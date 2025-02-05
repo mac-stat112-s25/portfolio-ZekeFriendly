@@ -3,3 +3,84 @@ title: "Mulivariate Viz"
 ---
 
 Use this file for practice with the **mulivariate viz** in-class activity.  Refer to the class website for details.
+
+## The story
+
+```{r}
+# Import and check out data
+education <- read.csv("https://mac-stat.github.io/data/sat.csv")
+head(education)
+library(tidyverse)
+```
+
+## Exercise 1: SAT scores
+```{r}
+ggplot(education, aes(x = sat)) +
+  geom_density()
+```
+# Part b
+Scores seam to be from 840 yo 1110. This looks like a left skewed, bimodal distribution. Typcal outcomes might be 900 and 1040. Im not sure why. 
+
+## Exercise 2: SAT Scores vs Per Pupil Spending & SAT Scores vs Salaries
+
+```{r}
+# Construct a plot of sat vs expend
+# Include a "best fit linear regression model" (HINT: method = "lm")
+ggplot(education, aes(x = expend, y = sat)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+```{r}
+# Construct a plot of sat vs salary
+# Include a "best fit linear regression model" (HINT: method = "lm")
+ggplot(education, aes(x = salary, y = sat)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+I'm surprised by what appears to be a negtative relationship between average sat score and salary or per student expenditure.
+
+## Exercise 3: SAT Scores vs Per Pupil Spending and Teacher Salaries
+```{r}
+ggplot(education, aes(x = expend, y = sat, color = salary)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+ggplot(education, aes(x = salary, y = sat)) +
+  geom_point()+
+  facet_grid(~expend)
+
+```
+## Exercise 4: Another way to Incorporate Scale
+```{r}
+ggplot(education, aes(y = sat, x = salary, color = cut(expend, 3))) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, method = "lm")
+```
+## Exercise 5: Finally an Explanation
+# Part a
+```{r}
+ggplot(education, aes(x = fracCat)) +
+  geom_bar()
+```
+# Part b
+```{r}
+ggplot(education, aes(x = sat, fill = fracCat)) +
+  geom_histogram()
+
+ggplot(education, aes(x = sat, fill = fracCat)) +
+  geom_density()
+
+ggplot(education, aes(x = sat)) +
+  geom_density()+
+  facet_wrap(~fracCat)
+```
+
+# Part C
+```{r}
+ggplot(education, aes(x = sat, y = expend, color = fracCat)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+# Part D
+It appears that sat scores go down with higher expenditure. However, thanks to fracCat we can see that the expenditure is actually higher proportionally to the number of studnets that actually take the sat. S0 more money on fewer students means that their sat scores will probably be higher. 

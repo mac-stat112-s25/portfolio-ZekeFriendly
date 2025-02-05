@@ -3,3 +3,170 @@ title: "Univariate Viz"
 ---
 
 Use this file for practice with the **univariate viz** in-class activity.  Refer to the class website for details.
+## Exercise 1: Research Questions
+```{r}
+# Import data
+hikes <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
+```
+
+```{r}
+head(hikes)
+```
+## Exercise 2: Load tidyverse
+```{r}
+# Load the package
+library(tidyverse)
+
+# Use the ggplot function
+ggplot(hikes, aes(x = rating))
+```
+## Exercise 3: Bar Chart of Ratings - Part 1
+```{r}
+ggplot(hikes, aes(x = rating))
+```
+Think about:
+
+What did this do? What do you observe?
+What, in general, is the first argument of the ggplot() function?
+What is the purpose of writing x = rating?
+What do you think aes stands for?!?
+
+## Exercise 4: Bar Chart of Ratings - Part 2
+```{r}
+# Added bars for the data to the graph
+ggplot(hikes, aes(x = rating)) +
+  geom_bar()
+```
+```{r}
+# Added x and y axis labels
+ggplot(hikes, aes(x = rating)) +
+  geom_bar() +
+  labs(x = "Rating", y = "Number of hikes")
+```
+```{r}
+# Made the bars blue
+ggplot(hikes, aes(x = rating)) +
+  geom_bar(fill = "blue") +
+  labs(x = "Rating", y = "Number of hikes")
+```
+```{r}
+# Made the outline of the bars orange
+ggplot(hikes, aes(x = rating)) +
+  geom_bar(color = "orange", fill = "blue") +
+  labs(x = "Rating", y = "Number of hikes")
+```
+```{r}
+# Changed the theme, making the backround white
+ggplot(hikes, aes(x = rating)) +
+  geom_bar(color = "orange", fill = "blue")  +
+  labs(x = "Rating", y = "Number of hikes") +
+  theme_minimal()
+```
+## Exercise 5: Bar Chart Follow-up
+# Part a
+Reflect on the ggplot() code.
+
+*What’s the purpose of the +? When do we use it?*
+
+- it to add graphical elements, when we want to change an aspect of the graph?
+
+*We added the bars using geom_bar()? Why “geom”?*
+
+- maybe for geometry, it creates the shape of the graph. 
+
+*What does labs() stand for?*
+
+- labels (axis labels)
+
+*What’s the difference between color and fill?*
+
+- color is the outline and fill is inside
+
+# Part b
+In general, bar charts allow us to examine the following properties of a categorical variable:
+
+**observed categories: What categories did we observe?**
+
+- Hike level (easy, difficult, moderate)
+
+*variability between categories: Are observations evenly spread out among the categories, or are some categories more common than others?*
+*We must then translate this information into the context of our analysis, here hikes in the Adirondacks. Summarize below what you learned from the bar chart, in context.*
+
+- There are much more moderate hikes than difficult or easy ones
+
+# Part c
+*Is there anything you don’t like about this barplot? For example: check out the x-axis again.*
+
+- The x axis is ordinal but its not in the correct order
+
+## Exercise 6: Sad Bar Chart
+
+```{r}
+ggplot(hikes, aes(x = elevation)) +
+  geom_bar()
+```
+Among the hikes, what’s the range of elevation and how are the hikes distributed within this range (e.g. evenly, in clumps, “normally”)?
+
+- hard to answer
+
+What’s a typical elevation?
+
+- hard to see
+
+Are there any outliers, i.e. hikes that have unusually high or low elevations?
+
+- yes
+
+**Its a bad way to tell the story!**
+
+## Exercise 7: A Histogram of Elevation
+Part a
+Let’s dig into some details.
+
+How many hikes have an elevation between 4500 and 4700 feet?
+
+- 6
+
+How many total hikes have an elevation of at least 5100 feet?
+
+- 2
+
+Part b
+Now the bigger picture. In general, histograms allow us to examine the following properties of a quantitative variable:
+
+typical outcome: Where’s the center of the data points? What’s typical?
+
+- the center is 4400. But the most typical elevation is 4000
+
+variability & range: How spread out are the outcomes? What are the max and min outcomes?
+
+- 3500 to 5500
+
+shape: How are values distributed along the observed range? Is the distribution symmetric, right-skewed, left-skewed, bi-modal, or uniform (flat)?
+
+- it is leftskewed
+
+outliers: Are there any outliers, i.e. outcomes that are unusually large/small?
+
+I dont think so. 
+
+We must then translate this information into the context of our analysis, here hikes in the Adirondacks. Addressing each of the features in the above list, summarize below what you learned from the histogram, in context.
+
+## Exercise 8: Building Histograms - Part 1
+```{r}
+#ggplot(hikes, aes(x = elevation))+
+  #geom_histogram()
+```
+## Exercise 9: Building Histograms - Part 2
+
+```{r}
+# Adds a histogram lines
+ggplot(hikes, aes(x = elevation)) +
+  geom_histogram()
+```
+
+
+
+
+
+

@@ -2,4 +2,149 @@
 title: "Bivariate Viz"
 ---
 
-Use this file for practice with the **bivariate viz** in-class activity.  Refer to the class website for details.
+## Exercise 0: Review
+```{r}
+# Load data
+elections <- read.csv("https://mac-stat.github.io/data/election_2020_county.csv")
+
+# Check it out
+head(elections)
+
+#library
+library(tidyverse)
+```
+# Part a
+```{r}
+ggplot(elections, aes(x = winner_20, fill = winner_20)) +
+  geom_bar() +
+   scale_fill_manual(values = c("blue", "red"))
+```
+Follow ups: I know that joe biden won in 2020 so I hypothesis that the democratic counties are much more populated than republican ones. So what is the population of these counties?
+
+# Part b
+```{r}
+ggplot(elections, aes(x = repub_pct_20)) +
+  geom_histogram(binwidth = 5, fill = "#f85050")
+```
+
+Follow up: How can we add the %s to a graph of the counties. 
+
+## Exercise 1: Quantitative vs Quantitative Intuition Check
+```{r}
+ggplot(elections, aes(x = repub_pct_16, y = repub_pct_20)) +
+  geom_point()
+```
+## Exercise 2: 2 Quantitiative Variables
+```{r}
+# Set up the plotting frame
+# How does this differ than the frame for our histogram of repub_pct_20 alone?
+# both axis are variables
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16))
+
+# Add a layer of points for each county
+# Take note of the geom!
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_point()
+
+# Change the shape of the points
+# What happens if you change the shape to another number?
+#It changes the shape of the point
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_point(shape = 2)
+
+# YOU TRY: Modify the code to make the points "orange"
+# NOTE: Try to anticipate if "color" or "fill" will be useful here. Then try both.
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_point(color = "orange")
+
+# Add a layer that represents each county by the state it's in
+# Take note of the geom and the info it needs to run!
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_text(aes(label = state_abbr))
+```
+## Exercise 3: Reflect
+Summarize the relationship between the Republican support in 2020 and 2016. Be sure to comment on:
+
+the strength of the relationship (weak/moderate/strong)
+the direction of the relationship (positive/negative)
+outliers (in what state do counties deviate from the national trend? Any ideas why this might be the case?)
+
+There is a strong positive relationship between counties that voted republican in 2016 and 2020 with no real outliers. Some texas counties deviate from the trend but not by that much. Perhaps from increased urbanization in these areas?
+
+## Exercise 4: Visualizing trend
+```{r}
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_point() +
+  geom_smooth()
+```
+# Part a
+```{r}
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_smooth()
+```
+# Part B
+```{r}
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+## Exercise 5: Your Turn
+```{r}
+# Scatterplot of repub_pct_20 vs median_rent
+ggplot(elections, aes(y = repub_pct_20, x = median_rent)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+
+# Scatterplot of repub_pct_20 vs median_age
+ggplot(elections, aes(y = repub_pct_20, x = median_age)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+## Exercise 6: A Sad Scatterplot
+```{r}
+ggplot(elections, aes(y = repub_pct_20, x = historical)) +
+  geom_point()
+```
+Its a categorical variable, so a scatter plot does not make sense to illustrate this data. 
+
+## Exercise 7: Quantitative vs Categorical – Violins & Boxes
+```{r}
+# Side-by-side violin plots
+ggplot(elections, aes(y = repub_pct_20, x = historical)) +
+  geom_violin()
+
+# Side-by-side boxplots (defined below)
+ggplot(elections, aes(y = repub_pct_20, x = historical)) +
+  geom_boxplot()
+```
+
+
+Republican support is highest in historically red and lowest in historically blue counties. However in 2020 many counties showed less support of republicans beacuse they are lower outliers.
+
+## Exercise 8: Quantitative vs Categorical – Intuition Check
+```{r}
+ggplot(elections, aes(x = repub_pct_20, fill = historical)) +
+  geom_density()+
+  scale_fill_manual(values = c("blue", "purple", "red"))
+```
+## Exercise 9: Quantitative vs Categorical – Density Plots
+```{r}
+# Name two "bad" things about this plot
+ggplot(elections, aes(x = repub_pct_20, fill = historical)) +
+  geom_density()
+
+# the colors are wrong, the axis labels is bad
+```
+```{r}
+# What does scale_fill_manual do?
+# change the colors
+ggplot(elections, aes(x = repub_pct_20, fill = historical)) +
+  geom_density() +
+  scale_fill_manual(values = c("blue", "purple", "red"))
+```
+
+
+
+
+
