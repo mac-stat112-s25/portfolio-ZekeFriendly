@@ -3,3 +3,28 @@ title: "Trivariate Viz"
 ---
 
 Use this file to generate a professional looking **trivariate** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
+
+```{r}
+library(tidyverse)
+library(viridis)
+
+#loading the data
+movies <- read.csv("movie_profit.csv")
+```
+
+
+```{r}
+#Turing a numerical variable (domestic gross) into a categorical variable for better analysis
+breakpoints <- c(-1, 10000000, 20000000, 100000000, Inf)
+movies <- movies %>% 
+  mutate(domestic_gross_cat = cut(domestic_gross, breaks = breakpoints, labels = c("0-10", "10-20", "20-100", "100+")))
+```
+
+```{r}
+ggplot(movies, aes(x = production_budget/1000000, y = worldwide_gross/1000000, color = genre)) +
+  geom_point(alpha = 0.7) +
+  scale_color_manual("Genre", values = viridis(5)) +
+  labs(x = "Production Budget in Millions", y = "Worldwide Gross in Millions", title = "Worldwide Gross by Production Budget and Genre", caption = "Data from the-numbers.com", alt = "Higher budgets correlate to higher worldwide gross. Horror and Drama movies have lowest budgets and the lowest worldwide gross. While Action and Adventure movies have the highest of both.") +
+  theme_bw()
+```
+

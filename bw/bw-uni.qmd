@@ -3,3 +3,23 @@ title: "Univariate Viz"
 ---
 
 Use this file to generate a professional looking **univariate** visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
+
+```{r}
+library(tidyverse)
+library(viridis)
+```
+
+
+```{r}
+#loading the data
+movies <- read.csv("movie_profit.csv")
+```
+
+
+```{r}
+#How much do movies make?
+ggplot(movies, aes(x = production_budget/1000000)) +
+  geom_density(fill = viridis(1), alpha = 0.5) +
+  labs(x = "Production Budget in Millions", y = "Density", title = "Distribution of Movie Production Budgets", caption = "Data from the-numbers.com", alt = "Movie budgets peak at around 10 million dolars with a sharp decline, however there are a consitant percent of movies with budgets over 150 million.") +
+  theme_bw()
+```

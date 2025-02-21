@@ -3,3 +3,36 @@ title: "Quadvariate Viz"
 ---
 
 Use this file to generate a professional looking **quadvariate** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
+
+```{r}
+library(tidyverse)
+library(viridis)
+
+#loading the data
+movies <- read.csv("movie_profit.csv")
+```
+
+```{r}
+#Turing a numerical variable (domestic gross) into a categorical variable for better analysis
+breakpoints <- c(-1, 10000000, 20000000, 100000000, Inf)
+movies <- movies %>% 
+  mutate(domestic_gross_cat = cut(domestic_gross, breaks = breakpoints, labels = c("0-10", "10-20", "20-100", "100+")))
+```
+
+```{r}
+#reformatting the date to focus on the year for easier analysis
+movies <- movies %>%
+  mutate(date_vector = as.Date(release_date, format = "%m/%d/%Y"), 
+         year_group = format(date_vector, "%Y"))
+```
+
+```{r}
+ggplot(movies, aes(x = date_vector, y = production_budget/1000000, color = genre)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(~domestic_gross_cat, labeller = labeller(domestic_gross_cat = c("0-10" = "Under 10M Domestic", "10-20" = "10-20M Domestic", "20-100" = "20-100M Domestic", "100+" = "Over 100M Domestic"))) +
+  scale_color_manual("Genre", values = viridis(5)) +
+  labs(x = "Release Date", y = "Production Budget in Millions", title = "Production Budget by Release Date, Domestic Gross and Genre", caption = "Data from the-numbers.com", alt = "Later release dates apear to corellate with higher production budgets. Additionally higher production budgets correlate with high domestic gross. The highest production bidgets and highest grossing movies apear to be action movies realased after 2000.") +
+  theme_bw()
+```
+
+

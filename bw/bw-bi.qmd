@@ -3,3 +3,30 @@ title: "Bivariate Viz"
 ---
 
 Use this file to generate a professional looking **bivariate** visualization.  The visualization will not perfect the first time but you are expected to improve it throughout the semester especially after covering advanced topics such as effective viz.
+
+```{r}
+library(tidyverse)
+library(viridis)
+```
+
+
+```{r}
+#loading the data
+movies <- read.csv("movie_profit.csv")
+#Turing a numerical variable (domestic gross) into a categorical variable for better analysis
+breakpoints <- c(-1, 10000000, 20000000, 100000000, Inf)
+movies <- movies %>% 
+  mutate(domestic_gross_cat = cut(domestic_gross, breaks = breakpoints, labels = c("0-10", "10-20", "20-100", "100+")))
+```
+
+
+```{r}
+ggplot(movies, aes(x = genre, fill = domestic_gross_cat)) +
+  geom_bar(position = "fill", color = "white") +
+  scale_fill_manual("Domestic Gross in Millions", values = viridis(4)) +
+  labs(x = "Movie Genre", y = "Percent", title = "Proportion of Domestic Gross by Genre", caption = "Data from the-numbers.com", alt = "Adventure movies have the highest proportion of movies that gross over 100 million, while drama has the highest proportion of movies that gross under 10 million.") +
+  theme_bw()
+```
+
+
+
