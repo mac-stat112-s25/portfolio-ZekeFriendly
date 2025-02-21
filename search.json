@@ -1,0 +1,452 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "COMP/STAT112 Notebook",
+    "section": "",
+    "text": "Welcome\nWelcome to my online portfolio for COMP/STAT112 course taken at Macalester College. Please, use the side bar on the left for navigation.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "bw/bw-uni.html",
+    "href": "bw/bw-uni.html",
+    "title": "\n1  Univariate Viz\n",
+    "section": "",
+    "text": "Use this file to generate a professional looking univariate visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(viridis)\n\nLoading required package: viridisLite\n\n\n\n#loading the data\nmovies &lt;- read.csv(\"movie_profit.csv\")\n\n\n#How much do movies make?\nggplot(movies, aes(x = production_budget/1000000)) +\n  geom_density(fill = viridis(1), alpha = 0.5) +\n  labs(x = \"Production Budget in Millions\", y = \"Density\", title = \"Distribution of Movie Production Budgets\", caption = \"Data from the-numbers.com\", alt = \"Movie budgets peak at around 10 million dolars with a sharp decline, however there are a consitant percent of movies with budgets over 150 million.\") +\n  theme_bw()",
+    "crumbs": [
+      "Best Work",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Univariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "bw/bw-bi.html",
+    "href": "bw/bw-bi.html",
+    "title": "\n2  Bivariate Viz\n",
+    "section": "",
+    "text": "Use this file to generate a professional looking bivariate visualization. The visualization will not perfect the first time but you are expected to improve it throughout the semester especially after covering advanced topics such as effective viz.\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(viridis)\n\nLoading required package: viridisLite\n\n\n\n#loading the data\nmovies &lt;- read.csv(\"movie_profit.csv\")\n#Turing a numerical variable (domestic gross) into a categorical variable for better analysis\nbreakpoints &lt;- c(-1, 10000000, 20000000, 100000000, Inf)\nmovies &lt;- movies %&gt;% \n  mutate(domestic_gross_cat = cut(domestic_gross, breaks = breakpoints, labels = c(\"0-10\", \"10-20\", \"20-100\", \"100+\")))\n\n\nggplot(movies, aes(x = genre, fill = domestic_gross_cat)) +\n  geom_bar(position = \"fill\", color = \"white\") +\n  scale_fill_manual(\"Domestic Gross in Millions\", values = viridis(4)) +\n  labs(x = \"Movie Genre\", y = \"Percent\", title = \"Proportion of Domestic Gross by Genre\", caption = \"Data from the-numbers.com\", alt = \"Adventure movies have the highest proportion of movies that gross over 100 million, while drama has the highest proportion of movies that gross under 10 million.\") +\n  theme_bw()",
+    "crumbs": [
+      "Best Work",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "bw/bw-tri.html",
+    "href": "bw/bw-tri.html",
+    "title": "\n3  Trivariate Viz\n",
+    "section": "",
+    "text": "Use this file to generate a professional looking trivariate visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(viridis)\n\nLoading required package: viridisLite\n\n#loading the data\nmovies &lt;- read.csv(\"movie_profit.csv\")\n\n\n#Turing a numerical variable (domestic gross) into a categorical variable for better analysis\nbreakpoints &lt;- c(-1, 10000000, 20000000, 100000000, Inf)\nmovies &lt;- movies %&gt;% \n  mutate(domestic_gross_cat = cut(domestic_gross, breaks = breakpoints, labels = c(\"0-10\", \"10-20\", \"20-100\", \"100+\")))\n\n\nggplot(movies, aes(x = production_budget/1000000, y = worldwide_gross/1000000, color = genre)) +\n  geom_point(alpha = 0.7) +\n  scale_color_manual(\"Genre\", values = viridis(5)) +\n  labs(x = \"Production Budget in Millions\", y = \"Worldwide Gross in Millions\", title = \"Worldwide Gross by Production Budget and Genre\", caption = \"Data from the-numbers.com\", alt = \"Higher budgets correlate to higher worldwide gross. Horror and Drama movies have lowest budgets and the lowest worldwide gross. While Action and Adventure movies have the highest of both.\") +\n  theme_bw()",
+    "crumbs": [
+      "Best Work",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Trivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "bw/bw-quad.html",
+    "href": "bw/bw-quad.html",
+    "title": "\n4  Quadvariate Viz\n",
+    "section": "",
+    "text": "Use this file to generate a professional looking quadvariate visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(viridis)\n\nLoading required package: viridisLite\n\n#loading the data\nmovies &lt;- read.csv(\"movie_profit.csv\")\n\n\n#Turing a numerical variable (domestic gross) into a categorical variable for better analysis\nbreakpoints &lt;- c(-1, 10000000, 20000000, 100000000, Inf)\nmovies &lt;- movies %&gt;% \n  mutate(domestic_gross_cat = cut(domestic_gross, breaks = breakpoints, labels = c(\"0-10\", \"10-20\", \"20-100\", \"100+\")))\n\n\n#reformatting the date to focus on the year for easier analysis\nmovies &lt;- movies %&gt;%\n  mutate(date_vector = as.Date(release_date, format = \"%m/%d/%Y\"), \n         year_group = format(date_vector, \"%Y\"))\n\n\nggplot(movies, aes(x = date_vector, y = production_budget/1000000, color = genre)) +\n  geom_point(alpha = 0.5) +\n  facet_wrap(~domestic_gross_cat, labeller = labeller(domestic_gross_cat = c(\"0-10\" = \"Under 10M Domestic\", \"10-20\" = \"10-20M Domestic\", \"20-100\" = \"20-100M Domestic\", \"100+\" = \"Over 100M Domestic\"))) +\n  scale_color_manual(\"Genre\", values = viridis(5)) +\n  labs(x = \"Release Date\", y = \"Production Budget in Millions\", title = \"Production Budget by Release Date, Domestic Gross and Genre\", caption = \"Data from the-numbers.com\", alt = \"Later release dates apear to corellate with higher production budgets. Additionally higher production budgets correlate with high domestic gross. The highest production bidgets and highest grossing movies apear to be action movies realased after 2000.\") +\n  theme_bw()",
+    "crumbs": [
+      "Best Work",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Quadvariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "bw/bw-spatial.html",
+    "href": "bw/bw-spatial.html",
+    "title": "\n5  Spatial Viz\n",
+    "section": "",
+    "text": "Use this file to generate a professional looking spatial visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.\n\nlibrary(socviz)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(ggplot2)\nlibrary(mosaic)\n\nRegistered S3 method overwritten by 'mosaic':\n  method                           from   \n  fortify.SpatialPolygonsDataFrame ggplot2\n\nThe 'mosaic' package masks several functions from core packages in order to add \nadditional features.  The original behavior of these functions should not be affected by this.\n\nAttaching package: 'mosaic'\n\nThe following object is masked from 'package:Matrix':\n\n    mean\n\nThe following objects are masked from 'package:dplyr':\n\n    count, do, tally\n\nThe following object is masked from 'package:purrr':\n\n    cross\n\nThe following object is masked from 'package:ggplot2':\n\n    stat\n\nThe following objects are masked from 'package:stats':\n\n    binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,\n    quantile, sd, t.test, var\n\nThe following objects are masked from 'package:base':\n\n    max, mean, min, prod, range, sample, sum\n\nlibrary(viridis)\n\nLoading required package: viridisLite\n\ndata(county_map) \n\nelections_by_counties &lt;- read.csv(\"https://mac-stat.github.io/data/election_2020_county.csv\")\nelections_by_counties &lt;- elections_by_counties |&gt; \n  mutate(county_fips = as.character(county_fips)) |&gt; \n  mutate(county_fips = \n           ifelse(nchar(county_fips) == 4, paste0(\"0\", county_fips), county_fips))\n\n\nggplot(elections_by_counties, aes(map_id = county_fips, fill = median_rent)) +\n  geom_map(map = county_map) +\n  expand_limits(x = county_map$long, y = county_map$lat) +\n  theme_map() +\n  theme(legend.position = \"right\") + \n  coord_equal() +\n  labs(title = \"American Median Rent by County\", caption = \"Data from the mac-stat program\", alt = \"East and west coast counties tend to have much higher median rents than middle America, especially in California and Newyork.\") +\n  scale_fill_viridis(\"Median Rent\", option = \"B\", direction =  -1)",
+    "crumbs": [
+      "Best Work",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-uni.html",
+    "href": "ica/ica-uni.html",
+    "title": "\n6  Univariate Viz\n",
+    "section": "",
+    "text": "6.1 Exercise 2: Load tidyverse\n# Load the package\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n# Use the ggplot function\nggplot(hikes, aes(x = rating))",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Univariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-uni.html#exercise-3-bar-chart-of-ratings---part-1",
+    "href": "ica/ica-uni.html#exercise-3-bar-chart-of-ratings---part-1",
+    "title": "\n6  Univariate Viz\n",
+    "section": "\n6.2 Exercise 3: Bar Chart of Ratings - Part 1",
+    "text": "6.2 Exercise 3: Bar Chart of Ratings - Part 1\n\nggplot(hikes, aes(x = rating))\n\n\n\n\n\n\n\nThink about:\nWhat did this do? What do you observe? What, in general, is the first argument of the ggplot() function? What is the purpose of writing x = rating? What do you think aes stands for?!?",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Univariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-uni.html#exercise-4-bar-chart-of-ratings---part-2",
+    "href": "ica/ica-uni.html#exercise-4-bar-chart-of-ratings---part-2",
+    "title": "\n6  Univariate Viz\n",
+    "section": "\n6.3 Exercise 4: Bar Chart of Ratings - Part 2",
+    "text": "6.3 Exercise 4: Bar Chart of Ratings - Part 2\n\n# Added bars for the data to the graph\nggplot(hikes, aes(x = rating)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n# Added x and y axis labels\nggplot(hikes, aes(x = rating)) +\n  geom_bar() +\n  labs(x = \"Rating\", y = \"Number of hikes\")\n\n\n\n\n\n\n\n\n# Made the bars blue\nggplot(hikes, aes(x = rating)) +\n  geom_bar(fill = \"blue\") +\n  labs(x = \"Rating\", y = \"Number of hikes\")\n\n\n\n\n\n\n\n\n# Made the outline of the bars orange\nggplot(hikes, aes(x = rating)) +\n  geom_bar(color = \"orange\", fill = \"blue\") +\n  labs(x = \"Rating\", y = \"Number of hikes\")\n\n\n\n\n\n\n\n\n# Changed the theme, making the backround white\nggplot(hikes, aes(x = rating)) +\n  geom_bar(color = \"orange\", fill = \"blue\")  +\n  labs(x = \"Rating\", y = \"Number of hikes\") +\n  theme_minimal()",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Univariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-uni.html#exercise-5-bar-chart-follow-up",
+    "href": "ica/ica-uni.html#exercise-5-bar-chart-follow-up",
+    "title": "\n6  Univariate Viz\n",
+    "section": "\n6.4 Exercise 5: Bar Chart Follow-up",
+    "text": "6.4 Exercise 5: Bar Chart Follow-up",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Univariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-uni.html#exercise-6-sad-bar-chart",
+    "href": "ica/ica-uni.html#exercise-6-sad-bar-chart",
+    "title": "\n6  Univariate Viz\n",
+    "section": "\n9.1 Exercise 6: Sad Bar Chart",
+    "text": "9.1 Exercise 6: Sad Bar Chart\n\nggplot(hikes, aes(x = elevation)) +\n  geom_bar()\n\n\n\n\n\n\n\nAmong the hikes, what’s the range of elevation and how are the hikes distributed within this range (e.g. evenly, in clumps, “normally”)?\n\nhard to answer\n\nWhat’s a typical elevation?\n\nhard to see\n\nAre there any outliers, i.e. hikes that have unusually high or low elevations?\n\nyes\n\nIts a bad way to tell the story!",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Univariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-uni.html#exercise-7-a-histogram-of-elevation",
+    "href": "ica/ica-uni.html#exercise-7-a-histogram-of-elevation",
+    "title": "\n6  Univariate Viz\n",
+    "section": "\n9.2 Exercise 7: A Histogram of Elevation",
+    "text": "9.2 Exercise 7: A Histogram of Elevation\nPart a Let’s dig into some details.\nHow many hikes have an elevation between 4500 and 4700 feet?\n\n6\n\nHow many total hikes have an elevation of at least 5100 feet?\n\n2\n\nPart b Now the bigger picture. In general, histograms allow us to examine the following properties of a quantitative variable:\ntypical outcome: Where’s the center of the data points? What’s typical?\n\nthe center is 4400. But the most typical elevation is 4000\n\nvariability & range: How spread out are the outcomes? What are the max and min outcomes?\n\n3500 to 5500\n\nshape: How are values distributed along the observed range? Is the distribution symmetric, right-skewed, left-skewed, bi-modal, or uniform (flat)?\n\nit is leftskewed\n\noutliers: Are there any outliers, i.e. outcomes that are unusually large/small?\nI dont think so.\nWe must then translate this information into the context of our analysis, here hikes in the Adirondacks. Addressing each of the features in the above list, summarize below what you learned from the histogram, in context.",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Univariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-uni.html#exercise-8-building-histograms---part-1",
+    "href": "ica/ica-uni.html#exercise-8-building-histograms---part-1",
+    "title": "\n6  Univariate Viz\n",
+    "section": "\n9.3 Exercise 8: Building Histograms - Part 1",
+    "text": "9.3 Exercise 8: Building Histograms - Part 1\n\n#ggplot(hikes, aes(x = elevation))+\n  #geom_histogram()",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Univariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-uni.html#exercise-9-building-histograms---part-2",
+    "href": "ica/ica-uni.html#exercise-9-building-histograms---part-2",
+    "title": "\n6  Univariate Viz\n",
+    "section": "\n9.4 Exercise 9: Building Histograms - Part 2",
+    "text": "9.4 Exercise 9: Building Histograms - Part 2\n\n# Adds a histogram lines\nggplot(hikes, aes(x = elevation)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Univariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-bi.html",
+    "href": "ica/ica-bi.html",
+    "title": "\n7  Bivariate Viz\n",
+    "section": "",
+    "text": "7.1 Exercise 0: Review\n# Load data\nelections &lt;- read.csv(\"https://mac-stat.github.io/data/election_2020_county.csv\")\n\n# Check it out\nhead(elections)\n\n  state_name state_abbr historical    county_name county_fips total_votes_20\n1    Alabama         AL        red Autauga County        1001          27770\n2    Alabama         AL        red Baldwin County        1003         109679\n3    Alabama         AL        red Barbour County        1005          10518\n4    Alabama         AL        red    Bibb County        1007           9595\n5    Alabama         AL        red  Blount County        1009          27588\n6    Alabama         AL        red Bullock County        1011           4613\n  repub_pct_20 dem_pct_20 winner_20 total_votes_16 repub_pct_16 dem_pct_16\n1        71.44      27.02     repub          24661        73.44      23.96\n2        76.17      22.41     repub          94090        77.35      19.57\n3        53.45      45.79     repub          10390        52.27      46.66\n4        78.43      20.70     repub           8748        76.97      21.42\n5        89.57       9.57     repub          25384        89.85       8.47\n6        24.84      74.70       dem           4701        24.23      75.09\n  winner_16 total_votes_12 repub_pct_12 dem_pct_12 winner_12 total_population\n1     repub          23909        72.63      26.58     repub            54907\n2     repub          84988        77.39      21.57     repub           187114\n3     repub          11459        48.34      51.25       dem            27321\n4     repub           8391        73.07      26.22     repub            22754\n5     repub          23980        86.49      12.35     repub            57623\n6       dem           5318        23.51      76.31       dem            10746\n  percent_white percent_black percent_asian percent_hispanic per_capita_income\n1            76            18             1                2             24571\n2            83             9             1                4             26766\n3            46            46             0                5             16829\n4            75            22             0                2             17427\n5            88             1             0                8             20730\n6            22            71             0                6             18628\n  median_rent median_age\n1         668       37.5\n2         693       41.5\n3         382       38.3\n4         351       39.4\n5         403       39.6\n6         276       39.6\n\n#library\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-bi.html#exercise-1-quantitative-vs-quantitative-intuition-check",
+    "href": "ica/ica-bi.html#exercise-1-quantitative-vs-quantitative-intuition-check",
+    "title": "\n7  Bivariate Viz\n",
+    "section": "\n9.1 Exercise 1: Quantitative vs Quantitative Intuition Check",
+    "text": "9.1 Exercise 1: Quantitative vs Quantitative Intuition Check\n\nggplot(elections, aes(x = repub_pct_16, y = repub_pct_20)) +\n  geom_point()",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-bi.html#exercise-2-2-quantitiative-variables",
+    "href": "ica/ica-bi.html#exercise-2-2-quantitiative-variables",
+    "title": "\n7  Bivariate Viz\n",
+    "section": "\n9.2 Exercise 2: 2 Quantitiative Variables",
+    "text": "9.2 Exercise 2: 2 Quantitiative Variables\n\n# Set up the plotting frame\n# How does this differ than the frame for our histogram of repub_pct_20 alone?\n# both axis are variables\nggplot(elections, aes(y = repub_pct_20, x = repub_pct_16))\n\n\n\n\n\n\n# Add a layer of points for each county\n# Take note of the geom!\nggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +\n  geom_point()\n\n\n\n\n\n\n# Change the shape of the points\n# What happens if you change the shape to another number?\n#It changes the shape of the point\nggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +\n  geom_point(shape = 2)\n\n\n\n\n\n\n# YOU TRY: Modify the code to make the points \"orange\"\n# NOTE: Try to anticipate if \"color\" or \"fill\" will be useful here. Then try both.\nggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +\n  geom_point(color = \"orange\")\n\n\n\n\n\n\n# Add a layer that represents each county by the state it's in\n# Take note of the geom and the info it needs to run!\nggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +\n  geom_text(aes(label = state_abbr))",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-bi.html#exercise-3-reflect",
+    "href": "ica/ica-bi.html#exercise-3-reflect",
+    "title": "\n7  Bivariate Viz\n",
+    "section": "\n9.3 Exercise 3: Reflect",
+    "text": "9.3 Exercise 3: Reflect\nSummarize the relationship between the Republican support in 2020 and 2016. Be sure to comment on:\nthe strength of the relationship (weak/moderate/strong) the direction of the relationship (positive/negative) outliers (in what state do counties deviate from the national trend? Any ideas why this might be the case?)\nThere is a strong positive relationship between counties that voted republican in 2016 and 2020 with no real outliers. Some texas counties deviate from the trend but not by that much. Perhaps from increased urbanization in these areas?",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-bi.html#exercise-4-visualizing-trend",
+    "href": "ica/ica-bi.html#exercise-4-visualizing-trend",
+    "title": "\n7  Bivariate Viz\n",
+    "section": "\n9.4 Exercise 4: Visualizing trend",
+    "text": "9.4 Exercise 4: Visualizing trend\n\nggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +\n  geom_point() +\n  geom_smooth()\n\n`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = \"cs\")'",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-bi.html#exercise-5-your-turn",
+    "href": "ica/ica-bi.html#exercise-5-your-turn",
+    "title": "\n7  Bivariate Viz\n",
+    "section": "\n11.1 Exercise 5: Your Turn",
+    "text": "11.1 Exercise 5: Your Turn\n\n# Scatterplot of repub_pct_20 vs median_rent\nggplot(elections, aes(y = repub_pct_20, x = median_rent)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n# Scatterplot of repub_pct_20 vs median_age\nggplot(elections, aes(y = repub_pct_20, x = median_age)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-bi.html#exercise-6-a-sad-scatterplot",
+    "href": "ica/ica-bi.html#exercise-6-a-sad-scatterplot",
+    "title": "\n7  Bivariate Viz\n",
+    "section": "\n11.2 Exercise 6: A Sad Scatterplot",
+    "text": "11.2 Exercise 6: A Sad Scatterplot\n\nggplot(elections, aes(y = repub_pct_20, x = historical)) +\n  geom_point()\n\n\n\n\n\n\n\nIts a categorical variable, so a scatter plot does not make sense to illustrate this data.",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-bi.html#exercise-7-quantitative-vs-categorical-violins-boxes",
+    "href": "ica/ica-bi.html#exercise-7-quantitative-vs-categorical-violins-boxes",
+    "title": "\n7  Bivariate Viz\n",
+    "section": "\n11.3 Exercise 7: Quantitative vs Categorical – Violins & Boxes",
+    "text": "11.3 Exercise 7: Quantitative vs Categorical – Violins & Boxes\n\n# Side-by-side violin plots\nggplot(elections, aes(y = repub_pct_20, x = historical)) +\n  geom_violin()\n\n\n\n\n\n\n# Side-by-side boxplots (defined below)\nggplot(elections, aes(y = repub_pct_20, x = historical)) +\n  geom_boxplot()\n\n\n\n\n\n\n\nRepublican support is highest in historically red and lowest in historically blue counties. However in 2020 many counties showed less support of republicans beacuse they are lower outliers.",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-bi.html#exercise-8-quantitative-vs-categorical-intuition-check",
+    "href": "ica/ica-bi.html#exercise-8-quantitative-vs-categorical-intuition-check",
+    "title": "\n7  Bivariate Viz\n",
+    "section": "\n11.4 Exercise 8: Quantitative vs Categorical – Intuition Check",
+    "text": "11.4 Exercise 8: Quantitative vs Categorical – Intuition Check\n\nggplot(elections, aes(x = repub_pct_20, fill = historical)) +\n  geom_density()+\n  scale_fill_manual(values = c(\"blue\", \"purple\", \"red\"))",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-bi.html#exercise-9-quantitative-vs-categorical-density-plots",
+    "href": "ica/ica-bi.html#exercise-9-quantitative-vs-categorical-density-plots",
+    "title": "\n7  Bivariate Viz\n",
+    "section": "\n11.5 Exercise 9: Quantitative vs Categorical – Density Plots",
+    "text": "11.5 Exercise 9: Quantitative vs Categorical – Density Plots\n\n# Name two \"bad\" things about this plot\nggplot(elections, aes(x = repub_pct_20, fill = historical)) +\n  geom_density()\n\n\n\n\n\n\n# the colors are wrong, the axis labels is bad\n\n\n# What does scale_fill_manual do?\n# change the colors\nggplot(elections, aes(x = repub_pct_20, fill = historical)) +\n  geom_density() +\n  scale_fill_manual(values = c(\"blue\", \"purple\", \"red\"))",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Bivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-multi.html",
+    "href": "ica/ica-multi.html",
+    "title": "\n8  Mulivariate Viz\n",
+    "section": "",
+    "text": "8.1 The story\n# Import and check out data\neducation &lt;- read.csv(\"https://mac-stat.github.io/data/sat.csv\")\nhead(education)\n\n       State expend ratio salary frac verbal math  sat  fracCat\n1    Alabama  4.405  17.2 31.144    8    491  538 1029   (0,15]\n2     Alaska  8.963  17.6 47.951   47    445  489  934 (45,100]\n3    Arizona  4.778  19.3 32.175   27    448  496  944  (15,45]\n4   Arkansas  4.459  17.1 28.934    6    482  523 1005   (0,15]\n5 California  4.992  24.0 41.078   45    417  485  902  (15,45]\n6   Colorado  5.443  18.4 34.571   29    462  518  980  (15,45]\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mulivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-multi.html#exercise-1-sat-scores",
+    "href": "ica/ica-multi.html#exercise-1-sat-scores",
+    "title": "\n8  Mulivariate Viz\n",
+    "section": "\n8.2 Exercise 1: SAT scores",
+    "text": "8.2 Exercise 1: SAT scores\n\nggplot(education, aes(x = sat)) +\n  geom_density()",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mulivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-multi.html#exercise-2-sat-scores-vs-per-pupil-spending-sat-scores-vs-salaries",
+    "href": "ica/ica-multi.html#exercise-2-sat-scores-vs-per-pupil-spending-sat-scores-vs-salaries",
+    "title": "\n8  Mulivariate Viz\n",
+    "section": "\n9.1 Exercise 2: SAT Scores vs Per Pupil Spending & SAT Scores vs Salaries",
+    "text": "9.1 Exercise 2: SAT Scores vs Per Pupil Spending & SAT Scores vs Salaries\n\n# Construct a plot of sat vs expend\n# Include a \"best fit linear regression model\" (HINT: method = \"lm\")\nggplot(education, aes(x = expend, y = sat)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n# Construct a plot of sat vs salary\n# Include a \"best fit linear regression model\" (HINT: method = \"lm\")\nggplot(education, aes(x = salary, y = sat)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\nI’m surprised by what appears to be a negtative relationship between average sat score and salary or per student expenditure.",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mulivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-multi.html#exercise-3-sat-scores-vs-per-pupil-spending-and-teacher-salaries",
+    "href": "ica/ica-multi.html#exercise-3-sat-scores-vs-per-pupil-spending-and-teacher-salaries",
+    "title": "\n8  Mulivariate Viz\n",
+    "section": "\n9.2 Exercise 3: SAT Scores vs Per Pupil Spending and Teacher Salaries",
+    "text": "9.2 Exercise 3: SAT Scores vs Per Pupil Spending and Teacher Salaries\n\nggplot(education, aes(x = expend, y = sat, color = salary)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: The following aesthetics were dropped during statistical transformation:\ncolour.\nℹ This can happen when ggplot fails to infer the correct grouping structure in\n  the data.\nℹ Did you forget to specify a `group` aesthetic or to convert a numerical\n  variable into a factor?\n\n\n\n\n\n\n\nggplot(education, aes(x = salary, y = sat)) +\n  geom_point()+\n  facet_grid(~expend)",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mulivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-multi.html#exercise-4-another-way-to-incorporate-scale",
+    "href": "ica/ica-multi.html#exercise-4-another-way-to-incorporate-scale",
+    "title": "\n8  Mulivariate Viz\n",
+    "section": "\n9.3 Exercise 4: Another way to Incorporate Scale",
+    "text": "9.3 Exercise 4: Another way to Incorporate Scale\n\nggplot(education, aes(y = sat, x = salary, color = cut(expend, 3))) + \n  geom_point() + \n  geom_smooth(se = FALSE, method = \"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mulivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-multi.html#exercise-5-finally-an-explanation",
+    "href": "ica/ica-multi.html#exercise-5-finally-an-explanation",
+    "title": "\n8  Mulivariate Viz\n",
+    "section": "\n9.4 Exercise 5: Finally an Explanation",
+    "text": "9.4 Exercise 5: Finally an Explanation",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Mulivariate Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html",
+    "href": "ica/ica-spatial.html",
+    "title": "\n9  Spatial Viz\n",
+    "section": "",
+    "text": "9.1 Exercise 1: A leaflet with markers / points\nfave_places &lt;- read.csv(\"https://ajohns24.github.io/data/112/our_fave_places.csv\")\n\n# Check it out\nhead(fave_places)\n\n  latitude longitude\n1       46      -123\n2       33        52\n3       48       -90\n4       36      -112\n5       59        25\n6       39      -106",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html#exercise-2-details",
+    "href": "ica/ica-spatial.html#exercise-2-details",
+    "title": "\n9  Spatial Viz\n",
+    "section": "\n10.1 Exercise 2: Details",
+    "text": "10.1 Exercise 2: Details\n\n# Load package needed to change color\nlibrary(gplots)\n\n\nAttaching package: 'gplots'\n\n\nThe following object is masked from 'package:stats':\n\n    lowess\n\n# We can add colored circles instead of markers at each location\nleaflet(data = fave_places) |&gt; \n  addTiles() |&gt; \n  addCircles(color = col2hex(\"red\"))\n\n\n\n\n\n\n# We can change the background\n# Mark locations with yellow dots\n# And connect the dots, in their order in the dataset, with green lines\n# (These green lines don't mean anything here, but would if this were somebody's travel path!)\nleaflet(data = fave_places) |&gt;\n  addProviderTiles(\"USGS\") |&gt;\n  addCircles(weight = 10, opacity = 1, color = col2hex(\"yellow\")) |&gt;\n  addPolylines(\n    lng = ~longitude,\n    lat = ~latitude,\n    color = col2hex(\"green\")\n  )",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html#exercise-3-your-turn",
+    "href": "ica/ica-spatial.html#exercise-3-your-turn",
+    "title": "\n9  Spatial Viz\n",
+    "section": "\n10.2 Exercise 3: Your turn",
+    "text": "10.2 Exercise 3: Your turn\n\n# Import starbucks location data\nstarbucks &lt;- read.csv(\"https://mac-stat.github.io/data/starbucks.csv\")\n\n\n# Don't worry about the syntax\nstarbucks_mn &lt;- starbucks %&gt;%    \n  filter(Country == \"US\", State.Province == \"MN\")",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html#exercise-3-a-simple-scatterplot",
+    "href": "ica/ica-spatial.html#exercise-3-a-simple-scatterplot",
+    "title": "\n9  Spatial Viz\n",
+    "section": "\n11.1 Exercise 3: A simple scatterplot",
+    "text": "11.1 Exercise 3: A simple scatterplot\n\nggplot(starbucks, aes(x = Latitude, y = Longitude)) +\n  geom_point(alpha = 0.2, size = 0.2)\n\nWarning: Removed 1 row containing missing values or values outside the scale range\n(`geom_point()`).",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html#exercise-4-adding-a-country-level-background",
+    "href": "ica/ica-spatial.html#exercise-4-adding-a-country-level-background",
+    "title": "\n9  Spatial Viz\n",
+    "section": "\n11.2 Exercise 4: Adding a country-level background",
+    "text": "11.2 Exercise 4: Adding a country-level background\n\n# Load the package\nlibrary(rnaturalearth)\n\n# Get info about country boundaries across the world\n# in a \"sf\" or simple feature format\nworld_boundaries &lt;- ne_countries(returnclass = \"sf\")\n\n\n# What does this code produce?\n# What geom are we using for the point map?\nggplot(world_boundaries) + \n  geom_sf()\n\n\n\n\n\n\n\n\n# Load package needed to change map theme\nlibrary(mosaic)\n\nRegistered S3 method overwritten by 'mosaic':\n  method                           from   \n  fortify.SpatialPolygonsDataFrame ggplot2\n\n\n\nThe 'mosaic' package masks several functions from core packages in order to add \nadditional features.  The original behavior of these functions should not be affected by this.\n\n\n\nAttaching package: 'mosaic'\n\n\nThe following object is masked from 'package:Matrix':\n\n    mean\n\n\nThe following objects are masked from 'package:dplyr':\n\n    count, do, tally\n\n\nThe following object is masked from 'package:purrr':\n\n    cross\n\n\nThe following object is masked from 'package:ggplot2':\n\n    stat\n\n\nThe following objects are masked from 'package:stats':\n\n    binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,\n    quantile, sd, t.test, var\n\n\nThe following objects are masked from 'package:base':\n\n    max, mean, min, prod, range, sample, sum\n\n# Add a point for each Starbucks\n# NOTE: The Starbucks info is in our starbucks data, not world_boundaries\n# How does this change how we use geom_point?!\nggplot(world_boundaries) + \n  geom_sf() + \n  geom_point(\n    data = starbucks,\n    aes(x = Longitude, y = Latitude),\n    alpha = 0.3, size = 0.2, color = \"darkgreen\"\n  ) +\n  theme_map()\n\nWarning: Removed 1 row containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\nStarbucks is very common in the US Europe and east Asia.",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html#exercise-5-zooming-in-on-some-countries",
+    "href": "ica/ica-spatial.html#exercise-5-zooming-in-on-some-countries",
+    "title": "\n9  Spatial Viz\n",
+    "section": "\n11.3 Exercise 5: Zooming in on some countries",
+    "text": "11.3 Exercise 5: Zooming in on some countries\n\n# We'll learn this syntax soon! Don't worry about it now.\nstarbucks_cma &lt;- starbucks |&gt; \n  filter(Country %in% c('CA', 'MX', 'US'))\n\n\ncma_boundaries &lt;- ne_states(\n  country = c(\"canada\", \"mexico\", \"united states of america\"),\n  returnclass = \"sf\")\n\n\n# Just the boundaries\nggplot(cma_boundaries) + \n  geom_sf()\n\n\n\n\n\n\n\n\n# Add the points\n# And zoom in\nggplot(cma_boundaries) + \n  geom_sf() + \n  geom_point(\n    data = starbucks_cma,\n    aes(x = Longitude, y = Latitude),\n    alpha = 0.3,\n    size = 0.2,\n    color = \"darkgreen\"\n  ) +\n  coord_sf(xlim = c(-179.14, -50)) +\n  theme_map()",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html#exercise-6-a-state-and-county-level-map",
+    "href": "ica/ica-spatial.html#exercise-6-a-state-and-county-level-map",
+    "title": "\n9  Spatial Viz\n",
+    "section": "\n11.4 Exercise 6: A state and county-level map",
+    "text": "11.4 Exercise 6: A state and county-level map\n\nstarbucks_midwest &lt;- starbucks |&gt; \n  filter(State.Province %in% c(\"MN\", \"ND\", \"SD\", \"WI\"))\n\n\n# Load packages\nlibrary(sf)\n\nLinking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE\n\nlibrary(maps)\n\n\nAttaching package: 'maps'\n\n\nThe following object is masked from 'package:purrr':\n\n    map\n\n# Get the boundaries\nmidwest_boundaries &lt;- st_as_sf(\n  maps::map(\"county\",\n            region = c(\"minnesota\", \"wisconsin\", \"north dakota\", \"south dakota\"), \n            fill = TRUE, plot = FALSE))\n\n# Check it out\nhead(midwest_boundaries)\n\nSimple feature collection with 6 features and 1 field\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -96.81268 ymin: 45.05167 xmax: -93.01397 ymax: 48.53526\nGeodetic CRS:  +proj=longlat +ellps=clrk66 +no_defs +type=crs\n                                     ID                           geom\nminnesota,aitkin       minnesota,aitkin MULTIPOLYGON (((-93.03689 4...\nminnesota,anoka         minnesota,anoka MULTIPOLYGON (((-93.51817 4...\nminnesota,becker       minnesota,becker MULTIPOLYGON (((-95.14537 4...\nminnesota,beltrami   minnesota,beltrami MULTIPOLYGON (((-95.58655 4...\nminnesota,benton       minnesota,benton MULTIPOLYGON (((-93.77027 4...\nminnesota,big stone minnesota,big stone MULTIPOLYGON (((-96.10794 4...\n\n\n\nggplot(midwest_boundaries) + \n  geom_sf() + \n  geom_point(\n    data = starbucks_midwest,\n    aes(x = Longitude, y = Latitude),\n    alpha = 0.7,\n    size = 0.2, \n    color = 'darkgreen'\n    ) + \n  theme_map()",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html#exercise-7-contour-maps",
+    "href": "ica/ica-spatial.html#exercise-7-contour-maps",
+    "title": "\n9  Spatial Viz\n",
+    "section": "\n11.5 Exercise 7: Contour maps",
+    "text": "11.5 Exercise 7: Contour maps\n\n# What changed in the plot?\n# What changed in our code?!\nggplot(cma_boundaries) + \n  geom_sf() + \n  geom_density_2d(\n    data = starbucks_cma,\n    aes(x = Longitude, y = Latitude),\n    size = 0.2,\n    color = \"darkgreen\"\n  ) +\n  coord_sf(xlim = c(-179.14, -50), ylim = c(14.54, 83.11)) +\n  theme_map()\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html#part-3-choropleth-maps",
+    "href": "ica/ica-spatial.html#part-3-choropleth-maps",
+    "title": "\n9  Spatial Viz\n",
+    "section": "\n11.6 Part 3: Choropleth maps",
+    "text": "11.6 Part 3: Choropleth maps\n\nelections_by_state &lt;-  read.csv(\"https://mac-stat.github.io/data/election_2020_by_state.csv\")\nelections_by_counties &lt;- read.csv(\"https://mac-stat.github.io/data/election_2020_county.csv\")\n# Get the latitude and longitude coordinates of state boundaries\nstates_map &lt;- map_data(\"state\")\n\n# Don't worry about the code!\n\nelections_by_state &lt;- elections_by_state |&gt; \n  filter(state_abbr != \"DC\") |&gt; \n  select(state_name, state_abbr, repub_pct_20) |&gt; \n  mutate(repub_20_categories = \n           cut(repub_pct_20, \n               breaks = seq(30, 70, by = 5), \n               labels = c(\"30-34\", \"35-39\", \"40-44\", \"45-49\",\n                          \"50-54\", \"55-59\", \"60-64\", \"65-70\"), \n               include.lowest = TRUE))\n\nelections_by_counties &lt;- elections_by_counties |&gt; \n  select(state_name, state_abbr, county_name, county_fips,\n          repub_pct_20, median_age, median_rent) |&gt; \n  mutate(repub_20_categories = \n           cut(repub_pct_20, \n               breaks = seq(0, 100, by = 10),\n               labels = c(\"0-9\", \"10-19\", \"20-29\", \"30-39\", \"40-49\",\n                          \"50-59\", \"60-69\", \"70-79\", \"80-89\", \"90-100\"),\n               include.lowest = TRUE))\n\n# Check it out\nhead(states_map)\n\n       long      lat group order  region subregion\n1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;\n2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;\n3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;\n4 -87.53076 30.33239     1     4 alabama      &lt;NA&gt;\n5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;\n6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;\n\n\n\nhead(states_map)\n\n       long      lat group order  region subregion\n1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;\n2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;\n3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;\n4 -87.53076 30.33239     1     4 alabama      &lt;NA&gt;\n5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;\n6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;\n\n\n\nhead(elections_by_state) \n\n   state_name state_abbr repub_pct_20 repub_20_categories\n1     alabama         AL        62.03               60-64\n2    arkansas         AR        62.40               60-64\n3     arizona         AZ        49.06               45-49\n4  california         CA        34.33               30-34\n5    colorado         CO        41.90               40-44\n6 connecticut         CT        39.21               35-39\n\n\n\n# Note where the dataset, elections_by_state, is used\n# Note where the background map, states_map, is used\nggplot(elections_by_state, aes(map_id = state_name, fill = repub_pct_20)) +\n  geom_map(map = states_map) +\n  expand_limits(x = states_map$long, y = states_map$lat) +\n  theme_map() \n\n\n\n\n\n\n\n\n# Make it nicer!\nggplot(elections_by_state, aes(map_id = state_name, fill = repub_pct_20)) +\n  geom_map(map = states_map) +\n  expand_limits(x = states_map$long, y = states_map$lat) +\n  theme_map() + \n  scale_fill_gradientn(name = \"% Republican\", colors = c(\"blue\", \"purple\", \"red\"), values = scales::rescale(seq(0, 100, by = 5)))\n\n\n\n\n\n\n\n\nggplot(elections_by_state, aes(map_id = state_name, fill = repub_20_categories)) +\n  geom_map(map = states_map) +\n  expand_limits(x = states_map$long, y = states_map$lat) +\n  theme_map()\n\n\n\n\n\n\n\n\n# Load package needed for refining color palette\nlibrary(RColorBrewer)\n\n# Now fix the colors\nggplot(elections_by_state, aes(map_id = state_name, fill = repub_20_categories)) +\n  geom_map(map = states_map) +\n  expand_limits(x = states_map$long, y = states_map$lat) +\n  theme_map() + \n  scale_fill_manual(values = rev(brewer.pal(8, \"RdBu\")), name = \"% Republican\")\n\n\n\n\n\n\n\n\n# Get only the starbucks data from the US\nstarbucks_us &lt;- starbucks |&gt; \n  filter(Country == \"US\")\n\n# Map it\nggplot(elections_by_state, aes(map_id = state_name, fill = repub_20_categories)) +\n  geom_map(map = states_map) +\n  geom_point(\n    data = starbucks_us,\n    aes(x = Longitude, y = Latitude),\n    size = 0.05,\n    alpha = 0.2,\n    inherit.aes = FALSE\n  ) +\n  expand_limits(x = states_map$long, y = states_map$lat) +\n  theme_map() + \n  scale_fill_manual(values = rev(brewer.pal(8, \"RdBu\")), name = \"% Republican\")\n\n\n\n\n\n\n\n\n# Get the latitude and longitude coordinates of county boundaries\nlibrary(socviz)\ndata(county_map) \n\n# Check it out\nhead(county_map)\n\n     long      lat order  hole piece            group    id\n1 1225889 -1275020     1 FALSE     1 0500000US01001.1 01001\n2 1235324 -1274008     2 FALSE     1 0500000US01001.1 01001\n3 1244873 -1272331     3 FALSE     1 0500000US01001.1 01001\n4 1244129 -1267515     4 FALSE     1 0500000US01001.1 01001\n5 1272010 -1262889     5 FALSE     1 0500000US01001.1 01001\n6 1276797 -1295514     6 FALSE     1 0500000US01001.1 01001\n\n\n\nhead(county_map)\n\n     long      lat order  hole piece            group    id\n1 1225889 -1275020     1 FALSE     1 0500000US01001.1 01001\n2 1235324 -1274008     2 FALSE     1 0500000US01001.1 01001\n3 1244873 -1272331     3 FALSE     1 0500000US01001.1 01001\n4 1244129 -1267515     4 FALSE     1 0500000US01001.1 01001\n5 1272010 -1262889     5 FALSE     1 0500000US01001.1 01001\n6 1276797 -1295514     6 FALSE     1 0500000US01001.1 01001\n\n\n\nhead(elections_by_counties)\n\n  state_name state_abbr    county_name county_fips repub_pct_20 median_age\n1    Alabama         AL Autauga County        1001        71.44       37.5\n2    Alabama         AL Baldwin County        1003        76.17       41.5\n3    Alabama         AL Barbour County        1005        53.45       38.3\n4    Alabama         AL    Bibb County        1007        78.43       39.4\n5    Alabama         AL  Blount County        1009        89.57       39.6\n6    Alabama         AL Bullock County        1011        24.84       39.6\n  median_rent repub_20_categories\n1         668               70-79\n2         693               70-79\n3         382               50-59\n4         351               70-79\n5         403               80-89\n6         276               20-29\n\n\n\n# Add 0's at the beginning of any fips_code that's fewer than 5 numbers long\n# Don't worry about the syntax\nelections_by_counties &lt;- elections_by_counties |&gt; \n  mutate(county_fips = as.character(county_fips)) |&gt; \n  mutate(county_fips = \n           ifelse(nchar(county_fips) == 4, paste0(\"0\", county_fips), county_fips))\n\n\nggplot(elections_by_counties, aes(map_id = county_fips, fill = repub_20_categories)) +\n  geom_map(map = county_map) +\n  scale_fill_manual(values = rev(brewer.pal(10, \"RdBu\")), name = \"% Republican\") +\n  expand_limits(x = county_map$long, y = county_map$lat) +\n  theme_map() +\n  theme(legend.position = \"right\") + \n  coord_equal()",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html#exercise-10-play-around",
+    "href": "ica/ica-spatial.html#exercise-10-play-around",
+    "title": "\n9  Spatial Viz\n",
+    "section": "\n11.7 Exercise 10: Play around!",
+    "text": "11.7 Exercise 10: Play around!\n\nggplot(elections_by_counties, aes(map_id = county_fips, fill = median_rent)) +\n  geom_map(map = county_map) +\n  expand_limits(x = county_map$long, y = county_map$lat) +\n  theme_map() +\n  theme(legend.position = \"right\") + \n  coord_equal() +\n  scale_fill_gradient(low=\"white\", high = \"blue\")\n\n\n\n\n\n\nggplot(elections_by_counties, aes(map_id = county_fips, fill = median_age)) +\n  geom_map(map = county_map) +\n  expand_limits(x = county_map$long, y = county_map$lat) +\n  theme_map() +\n  theme(legend.position = \"right\") + \n  coord_equal() +\n  scale_fill_gradient(low=\"white\", high = \"green\")",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  },
+  {
+    "objectID": "ica/ica-spatial.html#exercise-11-choropleth-maps-with-leaflet",
+    "href": "ica/ica-spatial.html#exercise-11-choropleth-maps-with-leaflet",
+    "title": "\n9  Spatial Viz\n",
+    "section": "\n11.8 Exercise 11: Choropleth maps with leaflet",
+    "text": "11.8 Exercise 11: Choropleth maps with leaflet\n\n# From https://leafletjs.com/examples/choropleth/us-states.js\nstates &lt;- sf::read_sf(\"https://rstudio.github.io/leaflet/json/us-states.geojson\")\n\nbins &lt;- c(0, 10, 20, 50, 100, 200, 500, 1000, Inf)\npal &lt;- colorBin(\"YlOrRd\", domain = states$density, bins = bins)\n\nlabels &lt;- sprintf(\n  \"&lt;strong&gt;%s&lt;/strong&gt;&lt;br/&gt;%g people / mi&lt;sup&gt;2&lt;/sup&gt;\",\n  states$name, states$density\n) %&gt;% lapply(htmltools::HTML)\n\nleaflet(states) %&gt;%\n  setView(-96, 37.8, 4) %&gt;%\n  addProviderTiles(\"MapBox\", options = providerTileOptions(\n    id = \"mapbox.light\",\n    accessToken = Sys.getenv('MAPBOX_ACCESS_TOKEN'))) %&gt;%\n  addPolygons(\n    fillColor = ~pal(density),\n    weight = 2,\n    opacity = 1,\n    color = \"white\",\n    dashArray = \"3\",\n    fillOpacity = 0.7,\n    highlightOptions = highlightOptions(\n      weight = 5,\n      color = \"#666\",\n      dashArray = \"\",\n      fillOpacity = 0.7,\n      bringToFront = TRUE),\n    label = labels,\n    labelOptions = labelOptions(\n      style = list(\"font-weight\" = \"normal\", padding = \"3px 8px\"),\n      textsize = \"15px\",\n      direction = \"auto\")) %&gt;%\n  addLegend(pal = pal, values = ~density, opacity = 0.7, title = NULL,\n    position = \"bottomright\")\n\nWarning in sf::st_is_longlat(x): bounding box has potentially an invalid value\nrange for longlat data",
+    "crumbs": [
+      "In-class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Spatial Viz</span>"
+    ]
+  }
+]
