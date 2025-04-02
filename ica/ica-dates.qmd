@@ -1,0 +1,187 @@
+---
+title: "ica-dates"
+format: html
+---
+
+## Exercise 1: More Filtering
+
+```{r}
+library(tidyverse)
+penguins <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-28/penguins.csv')
+
+# Check it out
+head(penguins)
+```
+
+
+```{r}
+# Create a dataset with just Adelie and Chinstrap using %in%
+# Pipe this into `count(species)` to confirm that you only have these 2 species
+penguins |>
+  filter(species %in% c("Adelie", "Chinstrap")) |>
+  count(species)
+```
+```{r}
+penguins |>
+  filter(species != "Gentoo") |>
+  count(species)
+```
+```{r}
+# NOTE the use of is.na()
+penguins_w_body_mass <- penguins |> 
+  filter(!is.na(body_mass_g))
+
+# Compare the number of penguins in this vs the original data
+nrow(penguins_w_body_mass)
+```
+
+We should only use na.omit in extreme circumstances beacuse if there are NAs in a column we are not focusing on, it will still get rid of them even though it wasnt necessary.
+
+## Exercise 2: More Selecting
+
+```{r}
+# First: recall the variable names
+names(penguins)
+```
+
+```{r}
+# Use a shortcut to keep everything but the year and island variables
+penguins %>% 
+  select(-island, -year)
+```
+
+```{r}
+# Use a shortcut to keep only species and the penguin characteristics measured in mm
+penguins %>% 
+  select(contains("mm"))
+```
+
+```{r}
+# Use a shortcut to keep only species and bill-related measurements
+penguins %>%
+  select(species, contains("bill"))
+```
+```{r}
+# Use a shortcut to keep only species and the length-related characteristics
+penguins %>%
+  select(species, contains("length"))
+```
+
+## Exercise 3: Arranging, Counting, & Grouping by Multiple Variables
+```{r}
+# Change this code to sort the penguins by species, and then island name
+# NOTE: The first row should be an Adelie penguin living on Biscoe island
+penguins |> 
+  arrange(species, island)
+```
+```{r}
+# Change this code to count the number of male/female penguins observed for each species
+penguins |> 
+  count(species, sex)
+```
+
+```{r}
+# Change this code to calculate the average body mass by species and sex
+penguins |> 
+  group_by(species, sex) |> 
+  summarize(mean = mean(body_mass_g, na.rm = TRUE))
+```
+
+## Exercise 4: Dates
+```{r}
+# Get today's date
+as.Date(today())
+```
+
+```{r}
+# Let's store this as "today" so we can work with it below
+today <- as.Date(today())
+
+# Check out the class of this object
+class(today)
+```
+
+```{r}
+year(today)
+```
+
+```{r}
+# What do these lines produce / what's their difference?
+month(today)
+```
+
+```{r}
+month(today, label = TRUE)
+```
+
+```{r}
+# What does this number mean?
+week(today)
+```
+
+it means we are 9 weeks into the year
+
+```{r}
+# What do these lines produce / what's their difference?
+mday(today)
+```
+26 days into the month
+
+```{r}
+yday(today)  # This is often called the "Julian day"
+```
+
+57 days into the year
+
+```{r}
+# What do these lines produce / what's their difference?
+wday(today)
+```
+
+4 days into the week
+
+```{r}
+wday(today, label = TRUE)
+```
+
+```{r}
+# What do the results of these 2 lines tell us?
+today >= ymd("2024-02-14")
+```
+
+```{r}
+today < ymd("2024-02-14")
+```
+
+## Exercises Part 2: Application
+```{r}
+library(mosaic)
+data("Birthdays")
+head(Birthdays)
+```
+
+## Exercise 5: Warming up
+```{r}
+# How many days of data do we have for each state?
+Birthdays %>% 
+  count(state)
+
+# How many total births were there in this time period?
+Birthdays %>% 
+  summarise(total_births = sum(births))
+
+# How many total births were there per state in this time period, sorted from low to high?
+Birthdays %>% 
+  group_by(state) %>% 
+  summarise(total_births = sum(births)) %>% 
+  arrange(desc(total_births))
+```
+## Exercise 6: Homework Reprise
+```{r}
+daily_births <- Birthdays %>% 
+  group_by(date) %>% 
+  mutate(wday = wday(date, label = TRUE)) %>% 
+  summarise(total_births = sum(births))
+head(daily_births)
+```
+

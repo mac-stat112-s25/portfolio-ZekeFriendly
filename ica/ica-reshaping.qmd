@@ -1,0 +1,152 @@
+---
+title: "ica-reshaping"
+format: html
+---
+
+## Exercise 1: What’s the problem?
+```{r}
+library(tidyverse)
+sleep_wide <- read.csv("https://mac-stat.github.io/data/sleep_wide.csv")
+
+head(sleep_wide)
+```
+
+# Part a
+reaction time after getting 3 hours of sleep each day
+
+# Part b
+It would have to be days in a column called days. 
+# Part c
+pivot longer
+
+## Exercise 2: Pivot longer
+
+# Part a
+```{r}
+# For cols, try 2 approaches: using - and starts_with
+sleep_wide |>
+  pivot_longer(cols = -Subject, names_to = "day", values_to = "reaction time", names_prefix = "day_")
+
+sleep_wide |>
+  pivot_longer(cols = starts_with("day_"), names_to = "day", values_to = "reaction time", names_prefix = "day_")
+```
+# Part b
+
+```{r}
+sleep_long <- sleep_wide |>
+  pivot_longer(cols = -Subject,
+               names_to = "day",
+               names_prefix = "day_",
+               values_to = "reaction_time")
+
+head(sleep_long)
+```
+
+removed the underscore from day to improve readability of day column
+
+# Part c
+
+```{r}
+ggplot(sleep_long, aes(x = day, y = reaction_time, color = Subject))+
+  geom_line()
+```
+
+## Exercise 3: Changing variable classes & plotting
+```{r}
+sleep_long <- sleep_wide |>
+  pivot_longer(cols = -Subject,
+               names_to = "day",
+               names_prefix = "day_",
+               values_to = "reaction_time") |> 
+  mutate(Subject = as.factor(Subject), day = as.numeric(day))
+
+# Check it out
+# Same data, different class
+head(sleep_long)
+```
+# Part a
+```{r}
+ggplot(sleep_long, aes(x = day, y = reaction_time, color = Subject))+
+  geom_line()
+
+ggplot(sleep_long, aes(x = day, y = reaction_time))+
+  facet_wrap(~Subject) +
+  geom_line()
+```
+# Part b
+reaction time goes up (takes longer) the less sleep you have. This is generally true but at different rates for different subjects for example reaction time starts going back down for subject 332. 
+
+## Exercise 4: Pivot wider
+
+# Part a
+```{r}
+sleep_long |>
+  pivot_wider(names_from = day, values_from = reaction_time) |>
+  head()
+```
+# Part b
+```{r}
+sleep_long |>
+  pivot_wider(names_from = day, values_from = reaction_time, names_prefix = "day_") |>
+  head()
+```
+## Exercise 5: Practice with Billboard charts
+
+```{r}
+# Load data
+library(tidyr)
+data("billboard")
+
+# Check it out
+head(billboard)
+```
+# Part a
+
+```{r}
+ggplot(billboard, aes(x = wk1, y = wk2)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1)
+```
+
+# Part B
+
+```{r}
+billboard %>% 
+  filter(wk2 > wk1) %>% 
+  select(track)
+```
+# Part c
+```{r}
+# Define nov_1999
+nov_1999 <- billboard %>% 
+  filter(date.entered == "1999-11-6") %>% 
+  select(-c(date.entered, track))
+
+head(nov_1999)
+
+# Confirm that nov_1999 has 2 rows (songs) and 77 columns
+dim(nov_1999)
+```
+# Part d
+```{r}
+nov_1999 %>% 
+  pivot_longer(cols = starts_with("wk"), names_to = "week", values_to = "ranking", names_prefix = "wk") %>% 
+  mutate(week = as.numeric(week)) %>% 
+
+  ggplot(aes(x = week, y = ranking, color = artist)) +
+    geom_line()
+```
+## Exercise 6: Practice with the Daily Show
+```{r}
+library(fivethirtyeight)
+data("daily_show_guests")
+daily <- daily_show_guests
+```
+
+# Part a
+```{r}
+daily_show_guests %>% 
+  group_by(raw_guest_list) %>% 
+  
+```
+

@@ -1,0 +1,219 @@
+---
+title: "ica-wrangling"
+format: html
+---
+
+```{r}
+library(tidyverse)
+elections <- read.csv("https://mac-stat.github.io/data/election_2020_county.csv")
+```
+
+## Exercise 1: select Practice
+```{r}
+# Define elections_small
+elections_small <- elections %>% 
+  select(state_name, county_name, total_votes_20, repub_pct_20, dem_pct_20, total_votes_16, dem_pct_16)
+
+# Check out the first 6 rows to confirm your code did what you think it did!
+head(elections_small)
+```
+
+## Exercise 2: filter Demo
+
+```{r}
+# Keep only data on counties in Hawaii
+elections_small |>
+ filter(state_name == "Hawaii")
+```
+
+```{r}
+# What does this do?
+elections_small |>
+  filter(state_name %in% c("Hawaii", "Delaware"))
+```
+```{r}
+# Keep only data on counties where the Republican got MORE THAN 93.97% of the vote in 2020
+# THINK: What variable is relevant here?
+elections_small |>
+  filter(repub_pct_20 >= 93.97)
+```
+
+```{r}
+# Keep only data on counties in Texas where the Democrat got more than 65% of the vote in 2020
+# Do this 2 ways.
+# Method 1: 2 filters with 1 condition each
+elections_small |>
+ filter(state_name == "Texas") |>
+ filter(dem_pct_20 > 65)
+
+# Method 2: 1 filter with 2 conditions
+elections_small |>
+ filter(state_name == "Texas", dem_pct_20 > 65)
+```
+
+## Exercise 3: arrange Demo
+
+```{r}
+# Arrange the counties in elections_small from lowest to highest percentage of 2020 Republican support
+# Print out just the first 6 rows
+elections_small |>
+  arrange(repub_pct_20) |>
+  head()
+```
+
+```{r}
+# Arrange the counties in elections_small from highest to lowest percentage of 2020 Republican support
+# Print out just the first 6 rows
+
+elections_small |>
+  arrange(desc(repub_pct_20)) |>
+  head()
+```
+
+## Exercise 4: mutate Demo
+```{r}
+# What did this code do?
+elections_small |>
+  mutate(diff_20 = repub_pct_20 - dem_pct_20) |>
+  head()
+```
+Creates a new column with the difference between democrat and republican vote %
+
+```{r}
+# What did this code do?
+elections_small |>
+  mutate(repub_votes_20 = round(total_votes_20 * repub_pct_20/100)) |>
+  head()
+```
+Creates a new column with the actual number of republican votes not just a percentage
+
+```{r}
+# What did this code do?
+elections_small |>
+  mutate(repub_win_20 = repub_pct_20 > dem_pct_20) |>
+  head()
+```
+Creates a new column that shows weather binary indicator of weather the republicans won the county
+
+```{r}
+# You try
+# Define a variable that calculates the change in Dem support in 2020 vs 2016
+elections_small |>
+ mutate(dem_change = dem_pct_20 - dem_pct_16) |>
+ head()
+```
+
+```{r}
+# You try
+# Define a variable that determines whether the Dem support was higher in 2020 than in 2016 (TRUE/FALSE)
+elections_small |>
+ mutate(dem_improve = dem_pct_20 > dem_pct_16) |>
+ head()
+```
+
+## Exercise 5: Pipe Series
+# Part a
+```{r}
+elections_small |>
+  filter(state_name == "Wisconsin",
+         repub_pct_20 < dem_pct_20) |>
+  arrange(desc(total_votes_20)) |>
+  head()
+```
+# Part b
+```{r}
+# Now try it. Change the order of filter and arrange below.
+elections_small |>
+  arrange(desc(total_votes_20)) |>
+  filter(state_name == "Wisconsin",
+         repub_pct_20 < dem_pct_20) |>
+  head()
+```
+
+# Part c
+So the order of filter() and arrange() did not matter – rerranging them produces the same results. BUT what is one advantage of filtering before arranging?
+
+- an advantage of filtering before aranging is there are less rows to arrange so its an easier function?
+
+# Part d
+```{r}
+elections_small |>
+  filter(state_name == "Delaware") |>
+  mutate(repub_win_20 = repub_pct_20 > dem_pct_20) |>
+  select(county_name, repub_pct_20, dem_pct_20, repub_win_20)
+```
+
+# Part e
+```{r}
+# Now try it. Change the order of mutate and select below.
+# elections_small |>
+#   filter(state_name == "Delaware") |>
+#   select(county_name, repub_pct_20, dem_pct_20, repub_win_20)
+  # mutate(repub_win_20 = repub_pct_20 > dem_pct_20) |>
+```
+There is an error beacuse we try and select for a variable that we dont have. 
+
+## Exercise 6: DIY Pipe Series
+
+# Part a
+```{r}
+elections_small |>
+  filter(state_name == "Minnesota") |>
+  arrange(desc(dem_pct_20)) %>% 
+  select(county_name, dem_pct_20)
+```
+# Part b
+```{r}
+mn_wi <- elections_small %>% 
+  filter(state_name %in% c("Minnesota", "Wisconsin")) %>% 
+  mutate(dem_change = dem_pct_20 - dem_pct_16) %>% 
+  arrange(dem_change) %>% 
+  select(state_name, county_name, dem_pct_20, dem_pct_16, dem_change)
+
+head(mn_wi)
+  
+```
+# Part c
+```{r}
+ggplot(mn_wi, aes(x = dem_change, fill = state_name)) +
+  geom_density(alpha = 0.7)
+```
+## Exercise 7: summarize Demo
+```{r}
+# What does this do?
+elections_small |>
+  summarize(median(repub_pct_20))
+```
+finds the median republican percentage for all US counties in 2020
+
+```{r}
+# What does this do?
+elections_small |>
+  summarize(median_repub = median(repub_pct_20))
+```
+makes the title more intelegable
+
+```{r}
+# What does this do?
+elections_small |>
+  summarize(median_repub = median(repub_pct_20), total_votes = sum(total_votes_20))
+```
+it adds the summary of the total votes in the us in 2020
+
+## Exercise 8: summarize + group_by demo
+
+```{r}
+elections_small |>
+  group_by(state_name)
+```
+
+```{r}
+# Check out the structure before and after group_by
+elections_small |>
+  class()
+
+elections_small |>
+  group_by(state_name) |>
+  class()
+```
+
