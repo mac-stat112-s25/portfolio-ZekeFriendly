@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bw/bw-uni.html">Best Work</a></li><li class="breadcrumb-item"><a href="../bw/bw-tri.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Trivariate Viz</span></a></li></ol></nav><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">
 <span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Trivariate Viz</span>
-</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -274,41 +274,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><p>Use this file to generate a professional looking <strong>trivariate</strong> visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(viridis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: viridisLite</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#loading the data</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>movies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"movie_profit.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#Turing a numerical variable (domestic gross) into a categorical variable for better analysis</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>breakpoints <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">10000000</span>, <span class="dv">20000000</span>, <span class="dv">100000000</span>, <span class="cn">Inf</span>)</span>
-<span id="cb6-3"><a href="#cb6-3"></a>movies <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span> </span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">mutate</span>(<span class="at">domestic_gross_cat =</span> <span class="fu">cut</span>(domestic_gross, <span class="at">breaks =</span> breakpoints, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0-10"</span>, <span class="st">"10-20"</span>, <span class="st">"20-100"</span>, <span class="st">"100+"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>(movies, <span class="fu">aes</span>(<span class="at">x =</span> production_budget<span class="sc">/</span><span class="dv">1000000</span>, <span class="at">y =</span> worldwide_gross<span class="sc">/</span><span class="dv">1000000</span>, <span class="at">color =</span> genre)) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">scale_color_manual</span>(<span class="st">"Genre"</span>, <span class="at">values =</span> <span class="fu">viridis</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Production Budget in Millions"</span>, <span class="at">y =</span> <span class="st">"Worldwide Gross in Millions"</span>, <span class="at">title =</span> <span class="st">"Worldwide Gross by Production Budget and Genre"</span>, <span class="at">caption =</span> <span class="st">"Data from the-numbers.com"</span>, <span class="at">alt =</span> <span class="st">"Higher budgets correlate to higher worldwide gross. Horror and Drama movies have lowest budgets and the lowest worldwide gross. While Action and Adventure movies have the highest of both."</span>) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#loading the data</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>movies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"movie_profit.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#Turing a numerical variable (domestic gross) into a categorical variable for better analysis</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>breakpoints <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">10000000</span>, <span class="dv">20000000</span>, <span class="dv">100000000</span>, <span class="cn">Inf</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a>movies <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span> </span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="fu">mutate</span>(<span class="at">domestic_gross_cat =</span> <span class="fu">cut</span>(domestic_gross, <span class="at">breaks =</span> breakpoints, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0-10"</span>, <span class="st">"10-20"</span>, <span class="st">"20-100"</span>, <span class="st">"100+"</span>)))</span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="fu">ggplot</span>(movies, <span class="fu">aes</span>(<span class="at">x =</span> production_budget<span class="sc">/</span><span class="dv">1000000</span>, <span class="at">y =</span> worldwide_gross<span class="sc">/</span><span class="dv">1000000</span>, <span class="at">color =</span> genre)) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>  <span class="fu">scale_color_manual</span>(<span class="st">"Genre"</span>, <span class="at">values =</span> <span class="fu">viridis</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Production Budget in Millions"</span>, <span class="at">y =</span> <span class="st">"Worldwide Gross in Millions"</span>, <span class="at">title =</span> <span class="st">"Worldwide Gross by Production Budget and Genre"</span>, <span class="at">caption =</span> <span class="st">"Data from the-numbers.com"</span>, <span class="at">alt =</span> <span class="st">"Higher budgets correlate to higher worldwide gross. Horror and Drama movies have lowest budgets and the lowest worldwide gross. While Action and Adventure movies have the highest of both."</span>) <span class="sc">+</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="bw-tri_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="bw-tri_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -948,36 +932,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">---</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="an">title:</span><span class="co"> "Trivariate Viz"</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">---</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a>Use this file to generate a professional looking **trivariate** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.</span>
-<span id="cb8-6"><a href="#cb8-6"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="in">```{r}</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb8-12"><a href="#cb8-12"></a></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#loading the data</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a>movies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"movie_profit.csv"</span>)</span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="in">```</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a></span>
-<span id="cb8-17"><a href="#cb8-17"></a></span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="in">```{r}</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a><span class="co">#Turing a numerical variable (domestic gross) into a categorical variable for better analysis</span></span>
-<span id="cb8-22"><a href="#cb8-22"></a>breakpoints <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">10000000</span>, <span class="dv">20000000</span>, <span class="dv">100000000</span>, <span class="cn">Inf</span>)</span>
-<span id="cb8-23"><a href="#cb8-23"></a>movies <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span> </span>
-<span id="cb8-24"><a href="#cb8-24"></a>  <span class="fu">mutate</span>(<span class="at">domestic_gross_cat =</span> <span class="fu">cut</span>(domestic_gross, <span class="at">breaks =</span> breakpoints, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0-10"</span>, <span class="st">"10-20"</span>, <span class="st">"20-100"</span>, <span class="st">"100+"</span>)))</span>
-<span id="cb8-25"><a href="#cb8-25"></a><span class="in">```</span></span>
-<span id="cb8-26"><a href="#cb8-26"></a></span>
-<span id="cb8-29"><a href="#cb8-29"></a><span class="in">```{r}</span></span>
-<span id="cb8-30"><a href="#cb8-30"></a><span class="fu">ggplot</span>(movies, <span class="fu">aes</span>(<span class="at">x =</span> production_budget<span class="sc">/</span><span class="dv">1000000</span>, <span class="at">y =</span> worldwide_gross<span class="sc">/</span><span class="dv">1000000</span>, <span class="at">color =</span> genre)) <span class="sc">+</span></span>
-<span id="cb8-31"><a href="#cb8-31"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb8-32"><a href="#cb8-32"></a>  <span class="fu">scale_color_manual</span>(<span class="st">"Genre"</span>, <span class="at">values =</span> <span class="fu">viridis</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb8-33"><a href="#cb8-33"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Production Budget in Millions"</span>, <span class="at">y =</span> <span class="st">"Worldwide Gross in Millions"</span>, <span class="at">title =</span> <span class="st">"Worldwide Gross by Production Budget and Genre"</span>, <span class="at">caption =</span> <span class="st">"Data from the-numbers.com"</span>, <span class="at">alt =</span> <span class="st">"Higher budgets correlate to higher worldwide gross. Horror and Drama movies have lowest budgets and the lowest worldwide gross. While Action and Adventure movies have the highest of both."</span>) <span class="sc">+</span></span>
-<span id="cb8-34"><a href="#cb8-34"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb8-35"><a href="#cb8-35"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="an">title:</span><span class="co"> "Trivariate Viz"</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="an">excecute:</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">  echo: true</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">  warning: false</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">  message: false</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">  error: false</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">  html:</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">    code-fold: true</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">---</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a>Use this file to generate a professional looking **trivariate** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="in">```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="in">library(viridis)</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="in">#loading the data</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="in">movies &lt;- read.csv("movie_profit.csv")</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="in">#Turing a numerical variable (domestic gross) into a categorical variable for better analysis</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="in">breakpoints &lt;- c(-1, 10000000, 20000000, 100000000, Inf)</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="in">movies &lt;- movies %&gt;% </span></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="in">  mutate(domestic_gross_cat = cut(domestic_gross, breaks = breakpoints, labels = c("0-10", "10-20", "20-100", "100+")))</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="in">ggplot(movies, aes(x = production_budget/1000000, y = worldwide_gross/1000000, color = genre)) +</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="in">  geom_point(alpha = 0.7) +</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a><span class="in">  scale_color_manual("Genre", values = viridis(5)) +</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="in">  labs(x = "Production Budget in Millions", y = "Worldwide Gross in Millions", title = "Worldwide Gross by Production Budget and Genre", caption = "Data from the-numbers.com", alt = "Higher budgets correlate to higher worldwide gross. Horror and Drama movies have lowest budgets and the lowest worldwide gross. While Action and Adventure movies have the highest of both.") +</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="in">  theme_bw()</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
