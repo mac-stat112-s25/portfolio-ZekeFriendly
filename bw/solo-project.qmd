@@ -3,6 +3,7 @@ title: "solo-porject"
 excecute:
   echo: true
   warning: false
+  message: false
   error: false
 
 format: 
@@ -11,36 +12,26 @@ format:
 ---
 
 
-```{r}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}
 library(tidyverse)
 library(sf)
 library(rnaturalearth)
 library(mosaic)
-```
 
-```{r}
 thailand <- read.csv('Thailand_Rainfall_Data.csv')
-```
 
-```{r}
 thailand_shape <- ne_states(country = "thailand") |> 
   select(name, geometry)
 
-```
-
-
-```{r}
 final_thailand <- thailand |> 
   left_join(thailand_shape, join_by(name == name))
-```
 
-
-```{r}
 ggplot(thailand_shape) + 
   geom_sf(aes(fill = final_thailand$X1991.07)) +
   scale_fill_viridis_c("Average Annual Percipitation (mm)", direction = -1) + 
   labs(x = "Latitude", y = "Longitude", title = "Precipitation Thailand 1901-2007", caption = "Data from the World Bank Group", alt = "Thailand has a large amount of precipitation especially in the center of the country") +
   theme_bw()
-  
 ```
+
+
 
