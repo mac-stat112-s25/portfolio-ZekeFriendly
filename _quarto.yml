@@ -4,7 +4,7 @@ project:
 
 book:
   title: "COMP/STAT112 Notebook"
-  author: "Your Name Here"
+  author: "Zeke Friendly"
   date: today
   reader-mode: true
   page-navigation: true
@@ -30,6 +30,7 @@ book:
       - bw/bw-tri.qmd
       - bw/bw-quad.qmd
       - bw/bw-spatial.qmd
+      - bw/solo-project.qmd
 
     - part: "In-class Activities"
       chapters: 
