@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.57">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>11&nbsp; Mulivariate Viz – COMP/STAT112 Notebook</title>
+<title>7&nbsp; Exam-1 – COMP/STAT112 Notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,8 +59,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../ica/ica-spatial.html" rel="next">
-<link href="../ica/ica-bi.html" rel="prev">
+<link href="../bw/Exam-2.html" rel="next">
+<link href="../bw/solo-project.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -106,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ica/ica-uni.html">In-class Activities</a></li><li class="breadcrumb-item"><a href="../ica/ica-multi.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mulivariate Viz</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bw/bw-uni.html">Best Work</a></li><li class="breadcrumb-item"><a href="../bw/Exam-1.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exam-1</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../bw/Exam-1.html" class="sidebar-item-text sidebar-link">
+  <a href="../bw/Exam-1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exam-1</span></span></a>
   </div>
 </li>
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ica/ica-multi.html" class="sidebar-item-text sidebar-link active">
+  <a href="../ica/ica-multi.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mulivariate Viz</span></span></a>
   </div>
 </li>
@@ -267,28 +267,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#the-story" id="toc-the-story" class="nav-link active" data-scroll-target="#the-story"><span class="header-section-number">11.1</span> The story</a></li>
-  <li><a href="#exercise-1-sat-scores" id="toc-exercise-1-sat-scores" class="nav-link" data-scroll-target="#exercise-1-sat-scores"><span class="header-section-number">11.2</span> Exercise 1: SAT scores</a></li>
-  <li>
-<a href="#part-b" id="toc-part-b" class="nav-link" data-scroll-target="#part-b"><span class="header-section-number">12</span> Part b</a>
-  <ul class="collapse">
-<li><a href="#exercise-2-sat-scores-vs-per-pupil-spending-sat-scores-vs-salaries" id="toc-exercise-2-sat-scores-vs-per-pupil-spending-sat-scores-vs-salaries" class="nav-link" data-scroll-target="#exercise-2-sat-scores-vs-per-pupil-spending-sat-scores-vs-salaries"><span class="header-section-number">12.1</span> Exercise 2: SAT Scores vs Per Pupil Spending &amp; SAT Scores vs Salaries</a></li>
-  <li><a href="#exercise-3-sat-scores-vs-per-pupil-spending-and-teacher-salaries" id="toc-exercise-3-sat-scores-vs-per-pupil-spending-and-teacher-salaries" class="nav-link" data-scroll-target="#exercise-3-sat-scores-vs-per-pupil-spending-and-teacher-salaries"><span class="header-section-number">12.2</span> Exercise 3: SAT Scores vs Per Pupil Spending and Teacher Salaries</a></li>
-  <li><a href="#exercise-4-another-way-to-incorporate-scale" id="toc-exercise-4-another-way-to-incorporate-scale" class="nav-link" data-scroll-target="#exercise-4-another-way-to-incorporate-scale"><span class="header-section-number">12.3</span> Exercise 4: Another way to Incorporate Scale</a></li>
-  <li><a href="#exercise-5-finally-an-explanation" id="toc-exercise-5-finally-an-explanation" class="nav-link" data-scroll-target="#exercise-5-finally-an-explanation"><span class="header-section-number">12.4</span> Exercise 5: Finally an Explanation</a></li>
-  </ul>
-</li>
-  <li><a href="#part-a" id="toc-part-a" class="nav-link" data-scroll-target="#part-a"><span class="header-section-number">13</span> Part a</a></li>
-  <li><a href="#part-b-1" id="toc-part-b-1" class="nav-link" data-scroll-target="#part-b-1"><span class="header-section-number">14</span> Part b</a></li>
-  <li><a href="#part-c" id="toc-part-c" class="nav-link" data-scroll-target="#part-c"><span class="header-section-number">15</span> Part C</a></li>
-  <li><a href="#part-d" id="toc-part-d" class="nav-link" data-scroll-target="#part-d"><span class="header-section-number">16</span> Part D</a></li>
+<li><a href="#loading-data" id="toc-loading-data" class="nav-link active" data-scroll-target="#loading-data"><span class="header-section-number">7.1</span> Loading Data</a></li>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration"><span class="header-section-number">7.2</span> Data Exploration</a></li>
+  <li><a href="#understanding-variables" id="toc-understanding-variables" class="nav-link" data-scroll-target="#understanding-variables"><span class="header-section-number">7.3</span> Understanding Variables</a></li>
+  <li><a href="#grand-rq" id="toc-grand-rq" class="nav-link" data-scroll-target="#grand-rq"><span class="header-section-number">7.4</span> Grand RQ</a></li>
+  <li><a href="#aditional-questions" id="toc-aditional-questions" class="nav-link" data-scroll-target="#aditional-questions"><span class="header-section-number">7.5</span> Aditional Questions</a></li>
   </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ica/ica-uni.html">In-class Activities</a></li><li class="breadcrumb-item"><a href="../ica/ica-multi.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mulivariate Viz</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../bw/bw-uni.html">Best Work</a></li><li class="breadcrumb-item"><a href="../bw/Exam-1.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exam-1</span></a></li></ol></nav><div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">
-<span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mulivariate Viz</span>
-</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exam-1</span>
+</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -302,200 +292,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>Use this file for practice with the <strong>mulivariate viz</strong> in-class activity. Refer to the class website for details.</p>
-<section id="the-story" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="the-story">
-<span class="header-section-number">11.1</span> The story</h2>
+</header><section id="loading-data" class="level2" data-number="7.1"><h2 data-number="7.1" class="anchored" data-anchor-id="loading-data">
+<span class="header-section-number">7.1</span> Loading Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Import and check out data</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>education <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/sat.csv"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">head</span>(education)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>       State expend ratio salary frac verbal math  sat  fracCat
-1    Alabama  4.405  17.2 31.144    8    491  538 1029   (0,15]
-2     Alaska  8.963  17.6 47.951   47    445  489  934 (45,100]
-3    Arizona  4.778  19.3 32.175   27    448  496  944  (15,45]
-4   Arkansas  4.459  17.1 28.934    6    482  523 1005   (0,15]
-5 California  4.992  24.0 41.078   45    417  485  902  (15,45]
-6   Colorado  5.443  18.4 34.571   29    462  518  980  (15,45]</code></pre>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidytuesdayR)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a>tuesdata <span class="ot">&lt;-</span> <span class="fu">tt_load</span>(<span class="st">'2020-02-18'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a>fc <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>food_consumption</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-</div>
-</section><section id="exercise-1-sat-scores" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="exercise-1-sat-scores">
-<span class="header-section-number">11.2</span> Exercise 1: SAT scores</h2>
+</section><section id="data-exploration" class="level2" data-number="7.2"><h2 data-number="7.2" class="anchored" data-anchor-id="data-exploration">
+<span class="header-section-number">7.2</span> Data Exploration</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> sat)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">head</span>(fc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  country   food_category consumption co2_emmission
+  &lt;chr&gt;     &lt;chr&gt;               &lt;dbl&gt;         &lt;dbl&gt;
+1 Argentina Pork                10.5          37.2 
+2 Argentina Poultry             38.7          41.5 
+3 Argentina Beef                55.5        1712   
+4 Argentina Lamb &amp; Goat          1.56         54.6 
+5 Argentina Fish                 4.36          6.96
+6 Argentina Eggs                11.4          10.5 </code></pre>
+</div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">tail</span>(fc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  country    food_category            consumption co2_emmission
+  &lt;chr&gt;      &lt;chr&gt;                          &lt;dbl&gt;         &lt;dbl&gt;
+1 Bangladesh Eggs                            2.08          1.91
+2 Bangladesh Milk - inc. cheese             21.9          31.2 
+3 Bangladesh Wheat and Wheat Products       17.5           3.33
+4 Bangladesh Rice                          172.          220.  
+5 Bangladesh Soybeans                        0.61          0.27
+6 Bangladesh Nuts inc. Peanut Butter         0.72          1.27</code></pre>
+</div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">dim</span>(fc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>[1] 1430    4</code></pre>
 </div>
 </div>
-</div>
-</section><section id="part-b" class="level1" data-number="12"><h1 data-number="12">
-<span class="header-section-number">12</span> Part b</h1>
-<p>Scores seam to be from 840 yo 1110. This looks like a left skewed, bimodal distribution. Typcal outcomes might be 900 and 1040. Im not sure why.</p>
-<section id="exercise-2-sat-scores-vs-per-pupil-spending-sat-scores-vs-salaries" class="level2" data-number="12.1"><h2 data-number="12.1" class="anchored" data-anchor-id="exercise-2-sat-scores-vs-per-pupil-spending-sat-scores-vs-salaries">
-<span class="header-section-number">12.1</span> Exercise 2: SAT Scores vs Per Pupil Spending &amp; SAT Scores vs Salaries</h2>
+</section><section id="understanding-variables" class="level2" data-number="7.3"><h2 data-number="7.3" class="anchored" data-anchor-id="understanding-variables">
+<span class="header-section-number">7.3</span> Understanding Variables</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Construct a plot of sat vs expend</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co"># Include a "best fit linear regression model" (HINT: method = "lm")</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> expend, <span class="at">y =</span> sat)) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(fc, <span class="fu">aes</span>(<span class="at">x =</span> consumption, <span class="at">y =</span> co2_emmission)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>food_category)<span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="Exam-1_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+</section><section id="grand-rq" class="level2" data-number="7.4"><h2 data-number="7.4" class="anchored" data-anchor-id="grand-rq">
+<span class="header-section-number">7.4</span> Grand RQ</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Construct a plot of sat vs salary</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># Include a "best fit linear regression model" (HINT: method = "lm")</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> salary, <span class="at">y =</span> sat)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>country_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">ggplot</span>(fc, <span class="fu">aes</span>(<span class="at">map_id =</span> country, <span class="at">fill =</span> consumption)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_map</span>(<span class="at">map =</span> country_map) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>food_category) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="st">"Consumption (kg/person/year"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> country_map<span class="sc">$</span>long, <span class="at">y =</span> country_map<span class="sc">$</span>lat) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Food Consumption Around the World"</span>, <span class="at">caption =</span> <span class="st">"Data from the TidyTuesday"</span>, <span class="at">alt =</span> <span class="st">"Western Countries tend to eat alot more milk and cheese than the rest of the world"</span>) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">theme_map</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="Exam-1_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>I’m surprised by what appears to be a negtative relationship between average sat score and salary or per student expenditure.</p>
-</section><section id="exercise-3-sat-scores-vs-per-pupil-spending-and-teacher-salaries" class="level2" data-number="12.2"><h2 data-number="12.2" class="anchored" data-anchor-id="exercise-3-sat-scores-vs-per-pupil-spending-and-teacher-salaries">
-<span class="header-section-number">12.2</span> Exercise 3: SAT Scores vs Per Pupil Spending and Teacher Salaries</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> expend, <span class="at">y =</span> sat, <span class="at">color =</span> salary)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The following aesthetics were dropped during statistical transformation:
-colour.
-ℹ This can happen when ggplot fails to infer the correct grouping structure in
-  the data.
-ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-  variable into a factor?</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> salary, <span class="at">y =</span> sat)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>expend)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="exercise-4-another-way-to-incorporate-scale" class="level2" data-number="12.3"><h2 data-number="12.3" class="anchored" data-anchor-id="exercise-4-another-way-to-incorporate-scale">
-<span class="header-section-number">12.3</span> Exercise 4: Another way to Incorporate Scale</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">y =</span> sat, <span class="at">x =</span> salary, <span class="at">color =</span> <span class="fu">cut</span>(expend, <span class="dv">3</span>))) <span class="sc">+</span> </span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="exercise-5-finally-an-explanation" class="level2" data-number="12.4"><h2 data-number="12.4" class="anchored" data-anchor-id="exercise-5-finally-an-explanation">
-<span class="header-section-number">12.4</span> Exercise 5: Finally an Explanation</h2>
-</section></section><section id="part-a" class="level1" data-number="13"><h1 data-number="13">
-<span class="header-section-number">13</span> Part a</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> fracCat)) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="part-b-1" class="level1" data-number="14"><h1 data-number="14">
-<span class="header-section-number">14</span> Part b</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">fill =</span> fracCat)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">fill =</span> fracCat)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> sat)) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>fracCat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="part-c" class="level1" data-number="15"><h1 data-number="15">
-<span class="header-section-number">15</span> Part C</h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> expend, <span class="at">color =</span> fracCat)) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="ica-multi_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section><section id="part-d" class="level1" data-number="16"><h1 data-number="16">
-<span class="header-section-number">16</span> Part D</h1>
-<p>It appears that sat scores go down with higher expenditure. However, thanks to fracCat we can see that the expenditure is actually higher proportionally to the number of studnets that actually take the sat. S0 more money on fewer students means that their sat scores will probably be higher.</p>
+</section><section id="aditional-questions" class="level2" data-number="7.5"><h2 data-number="7.5" class="anchored" data-anchor-id="aditional-questions">
+<span class="header-section-number">7.5</span> Aditional Questions</h2>
+<p>Do countries on the coast eat more fish?</p>
+<p>Which foods produce the most CO2?</p>
 
 
 <!-- -->
@@ -1120,103 +996,73 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
-      <a href="../ica/ica-bi.html" class="pagination-link" aria-label="Bivariate Viz">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bivariate Viz</span></span>
+      <a href="../bw/solo-project.html" class="pagination-link" aria-label="solo-porject">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">solo-porject</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../ica/ica-spatial.html" class="pagination-link" aria-label="Spatial Viz">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Spatial Viz</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../bw/Exam-2.html" class="pagination-link" aria-label="Exam-2">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exam-2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb23" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1"></a><span class="co">---</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="an">title:</span><span class="co"> "Mulivariate Viz"</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="co">---</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a></span>
-<span id="cb23-5"><a href="#cb23-5"></a>Use this file for practice with the **mulivariate viz** in-class activity.  Refer to the class website for details.</span>
-<span id="cb23-6"><a href="#cb23-6"></a></span>
-<span id="cb23-7"><a href="#cb23-7"></a><span class="fu">## The story</span></span>
-<span id="cb23-8"><a href="#cb23-8"></a></span>
-<span id="cb23-11"><a href="#cb23-11"></a><span class="in">```{r}</span></span>
-<span id="cb23-12"><a href="#cb23-12"></a><span class="co"># Import and check out data</span></span>
-<span id="cb23-13"><a href="#cb23-13"></a>education <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/sat.csv"</span>)</span>
-<span id="cb23-14"><a href="#cb23-14"></a><span class="fu">head</span>(education)</span>
-<span id="cb23-15"><a href="#cb23-15"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb23-16"><a href="#cb23-16"></a><span class="in">```</span></span>
-<span id="cb23-17"><a href="#cb23-17"></a></span>
-<span id="cb23-18"><a href="#cb23-18"></a><span class="fu">## Exercise 1: SAT scores</span></span>
-<span id="cb23-21"><a href="#cb23-21"></a><span class="in">```{r}</span></span>
-<span id="cb23-22"><a href="#cb23-22"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> sat)) <span class="sc">+</span></span>
-<span id="cb23-23"><a href="#cb23-23"></a>  <span class="fu">geom_density</span>()</span>
-<span id="cb23-24"><a href="#cb23-24"></a><span class="in">```</span></span>
-<span id="cb23-25"><a href="#cb23-25"></a><span class="fu"># Part b</span></span>
-<span id="cb23-26"><a href="#cb23-26"></a>Scores seam to be from 840 yo 1110. This looks like a left skewed, bimodal distribution. Typcal outcomes might be 900 and 1040. Im not sure why. </span>
-<span id="cb23-27"><a href="#cb23-27"></a></span>
-<span id="cb23-28"><a href="#cb23-28"></a><span class="fu">## Exercise 2: SAT Scores vs Per Pupil Spending &amp; SAT Scores vs Salaries</span></span>
-<span id="cb23-29"><a href="#cb23-29"></a></span>
-<span id="cb23-32"><a href="#cb23-32"></a><span class="in">```{r}</span></span>
-<span id="cb23-33"><a href="#cb23-33"></a><span class="co"># Construct a plot of sat vs expend</span></span>
-<span id="cb23-34"><a href="#cb23-34"></a><span class="co"># Include a "best fit linear regression model" (HINT: method = "lm")</span></span>
-<span id="cb23-35"><a href="#cb23-35"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> expend, <span class="at">y =</span> sat)) <span class="sc">+</span></span>
-<span id="cb23-36"><a href="#cb23-36"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb23-37"><a href="#cb23-37"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb23-38"><a href="#cb23-38"></a><span class="in">```</span></span>
-<span id="cb23-41"><a href="#cb23-41"></a><span class="in">```{r}</span></span>
-<span id="cb23-42"><a href="#cb23-42"></a><span class="co"># Construct a plot of sat vs salary</span></span>
-<span id="cb23-43"><a href="#cb23-43"></a><span class="co"># Include a "best fit linear regression model" (HINT: method = "lm")</span></span>
-<span id="cb23-44"><a href="#cb23-44"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> salary, <span class="at">y =</span> sat)) <span class="sc">+</span></span>
-<span id="cb23-45"><a href="#cb23-45"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb23-46"><a href="#cb23-46"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb23-47"><a href="#cb23-47"></a><span class="in">```</span></span>
-<span id="cb23-48"><a href="#cb23-48"></a></span>
-<span id="cb23-49"><a href="#cb23-49"></a>I'm surprised by what appears to be a negtative relationship between average sat score and salary or per student expenditure.</span>
-<span id="cb23-50"><a href="#cb23-50"></a></span>
-<span id="cb23-51"><a href="#cb23-51"></a><span class="fu">## Exercise 3: SAT Scores vs Per Pupil Spending and Teacher Salaries</span></span>
-<span id="cb23-54"><a href="#cb23-54"></a><span class="in">```{r}</span></span>
-<span id="cb23-55"><a href="#cb23-55"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> expend, <span class="at">y =</span> sat, <span class="at">color =</span> salary)) <span class="sc">+</span></span>
-<span id="cb23-56"><a href="#cb23-56"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb23-57"><a href="#cb23-57"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb23-58"><a href="#cb23-58"></a></span>
-<span id="cb23-59"><a href="#cb23-59"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> salary, <span class="at">y =</span> sat)) <span class="sc">+</span></span>
-<span id="cb23-60"><a href="#cb23-60"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb23-61"><a href="#cb23-61"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>expend)</span>
-<span id="cb23-62"><a href="#cb23-62"></a></span>
-<span id="cb23-63"><a href="#cb23-63"></a><span class="in">```</span></span>
-<span id="cb23-64"><a href="#cb23-64"></a><span class="fu">## Exercise 4: Another way to Incorporate Scale</span></span>
-<span id="cb23-67"><a href="#cb23-67"></a><span class="in">```{r}</span></span>
-<span id="cb23-68"><a href="#cb23-68"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">y =</span> sat, <span class="at">x =</span> salary, <span class="at">color =</span> <span class="fu">cut</span>(expend, <span class="dv">3</span>))) <span class="sc">+</span> </span>
-<span id="cb23-69"><a href="#cb23-69"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb23-70"><a href="#cb23-70"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb23-71"><a href="#cb23-71"></a><span class="in">```</span></span>
-<span id="cb23-72"><a href="#cb23-72"></a><span class="fu">## Exercise 5: Finally an Explanation</span></span>
-<span id="cb23-73"><a href="#cb23-73"></a><span class="fu"># Part a</span></span>
-<span id="cb23-76"><a href="#cb23-76"></a><span class="in">```{r}</span></span>
-<span id="cb23-77"><a href="#cb23-77"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> fracCat)) <span class="sc">+</span></span>
-<span id="cb23-78"><a href="#cb23-78"></a>  <span class="fu">geom_bar</span>()</span>
-<span id="cb23-79"><a href="#cb23-79"></a><span class="in">```</span></span>
-<span id="cb23-80"><a href="#cb23-80"></a><span class="fu"># Part b</span></span>
-<span id="cb23-83"><a href="#cb23-83"></a><span class="in">```{r}</span></span>
-<span id="cb23-84"><a href="#cb23-84"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">fill =</span> fracCat)) <span class="sc">+</span></span>
-<span id="cb23-85"><a href="#cb23-85"></a>  <span class="fu">geom_histogram</span>()</span>
-<span id="cb23-86"><a href="#cb23-86"></a></span>
-<span id="cb23-87"><a href="#cb23-87"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">fill =</span> fracCat)) <span class="sc">+</span></span>
-<span id="cb23-88"><a href="#cb23-88"></a>  <span class="fu">geom_density</span>()</span>
-<span id="cb23-89"><a href="#cb23-89"></a></span>
-<span id="cb23-90"><a href="#cb23-90"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> sat)) <span class="sc">+</span></span>
-<span id="cb23-91"><a href="#cb23-91"></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
-<span id="cb23-92"><a href="#cb23-92"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>fracCat)</span>
-<span id="cb23-93"><a href="#cb23-93"></a><span class="in">```</span></span>
-<span id="cb23-94"><a href="#cb23-94"></a></span>
-<span id="cb23-95"><a href="#cb23-95"></a><span class="fu"># Part C</span></span>
-<span id="cb23-98"><a href="#cb23-98"></a><span class="in">```{r}</span></span>
-<span id="cb23-99"><a href="#cb23-99"></a><span class="fu">ggplot</span>(education, <span class="fu">aes</span>(<span class="at">x =</span> sat, <span class="at">y =</span> expend, <span class="at">color =</span> fracCat)) <span class="sc">+</span></span>
-<span id="cb23-100"><a href="#cb23-100"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb23-101"><a href="#cb23-101"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb23-102"><a href="#cb23-102"></a><span class="in">```</span></span>
-<span id="cb23-103"><a href="#cb23-103"></a><span class="fu"># Part D</span></span>
-<span id="cb23-104"><a href="#cb23-104"></a>It appears that sat scores go down with higher expenditure. However, thanks to fracCat we can see that the expenditure is actually higher proportionally to the number of studnets that actually take the sat. S0 more money on fewer students means that their sat scores will probably be higher. </span>
-</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="an">title:</span><span class="co"> "Exam-1"</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="an">excecute:</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co">  echo: true</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co">  warning: false</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">  message: false</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co">  error: false</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="co">  html:</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="co">    code-fold: true</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="co">---</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="fu">## Loading Data</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="in">```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="in">library(tidytuesdayR)</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="in">library(rnaturalearth)</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="in">library(mosaic)</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a></span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="in">tuesdata &lt;- tt_load('2020-02-18')</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="in">fc &lt;- tuesdata$food_consumption</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a><span class="in">```</span></span>
+<span id="cb10-23"><a href="#cb10-23"></a></span>
+<span id="cb10-24"><a href="#cb10-24"></a><span class="fu">## Data Exploration</span></span>
+<span id="cb10-25"><a href="#cb10-25"></a></span>
+<span id="cb10-26"><a href="#cb10-26"></a><span class="in">```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a><span class="in">head(fc)</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a><span class="in">tail(fc)</span></span>
+<span id="cb10-29"><a href="#cb10-29"></a><span class="in">dim(fc)</span></span>
+<span id="cb10-30"><a href="#cb10-30"></a><span class="in">```</span></span>
+<span id="cb10-31"><a href="#cb10-31"></a></span>
+<span id="cb10-32"><a href="#cb10-32"></a><span class="fu">## Understanding Variables</span></span>
+<span id="cb10-33"><a href="#cb10-33"></a></span>
+<span id="cb10-34"><a href="#cb10-34"></a><span class="in">```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}</span></span>
+<span id="cb10-35"><a href="#cb10-35"></a><span class="in">ggplot(fc, aes(x = consumption, y = co2_emmission)) +</span></span>
+<span id="cb10-36"><a href="#cb10-36"></a><span class="in">  facet_wrap(~food_category)+</span></span>
+<span id="cb10-37"><a href="#cb10-37"></a><span class="in">  geom_smooth()</span></span>
+<span id="cb10-38"><a href="#cb10-38"></a><span class="in">```</span></span>
+<span id="cb10-39"><a href="#cb10-39"></a></span>
+<span id="cb10-40"><a href="#cb10-40"></a><span class="fu">## Grand RQ</span></span>
+<span id="cb10-41"><a href="#cb10-41"></a></span>
+<span id="cb10-42"><a href="#cb10-42"></a><span class="in">```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}</span></span>
+<span id="cb10-43"><a href="#cb10-43"></a><span class="in">country_map &lt;- map_data("world")</span></span>
+<span id="cb10-44"><a href="#cb10-44"></a></span>
+<span id="cb10-45"><a href="#cb10-45"></a><span class="in">ggplot(fc, aes(map_id = country, fill = consumption)) +</span></span>
+<span id="cb10-46"><a href="#cb10-46"></a><span class="in">  geom_map(map = country_map) +</span></span>
+<span id="cb10-47"><a href="#cb10-47"></a><span class="in">  facet_wrap(~food_category) +</span></span>
+<span id="cb10-48"><a href="#cb10-48"></a><span class="in">  scale_fill_viridis_c("Consumption (kg/person/year") +</span></span>
+<span id="cb10-49"><a href="#cb10-49"></a><span class="in">  expand_limits(x = country_map$long, y = country_map$lat) +</span></span>
+<span id="cb10-50"><a href="#cb10-50"></a><span class="in">  labs(title = "Food Consumption Around the World", caption = "Data from the TidyTuesday", alt = "Western Countries tend to eat alot more milk and cheese than the rest of the world") +</span></span>
+<span id="cb10-51"><a href="#cb10-51"></a><span class="in">  theme_map() </span></span>
+<span id="cb10-52"><a href="#cb10-52"></a><span class="in">  </span></span>
+<span id="cb10-53"><a href="#cb10-53"></a><span class="in">```</span></span>
+<span id="cb10-54"><a href="#cb10-54"></a><span class="fu">## Aditional Questions</span></span>
+<span id="cb10-55"><a href="#cb10-55"></a>Do countries on the coast eat more fish?</span>
+<span id="cb10-56"><a href="#cb10-56"></a></span>
+<span id="cb10-57"><a href="#cb10-57"></a>Which foods produce the most CO2?</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
