@@ -13,7 +13,7 @@ book:
   
   
   sidebar:
-    title: "Your Name Here"
+    title: "Zeke Friendly"
     collapse-level: 2
     style: "docked"
     pinned: true
@@ -31,6 +31,8 @@ book:
       - bw/bw-quad.qmd
       - bw/bw-spatial.qmd
       - bw/solo-project.qmd
+      - bw/Exam-1.qmd
+      - bw/Exam-2.qmd
 
     - part: "In-class Activities"
       chapters: 
