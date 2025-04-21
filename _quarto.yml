@@ -33,7 +33,12 @@ book:
       - bw/solo-project.qmd
       - bw/Exam-1.qmd
       - bw/Exam-2.qmd
-
+  
+    - part: "Summary Sheets"
+      chapters:
+      - sum/Visualization.qmd
+      - sum/Wrangling.qmd
+      
     - part: "In-class Activities"
       chapters: 
       - ica/ica-uni.qmd

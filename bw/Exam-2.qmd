@@ -11,7 +11,7 @@ format:
     code-fold: true
 ---
 
-## Loading Data
+## Loading Data {-}
 ```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}
 library(tidytuesdayR)
 library(tidyverse)
