@@ -323,16 +323,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13"></a></span>
 <span id="cb1-14"><a href="#cb1-14"></a><span class="fu">ggplot</span>(thailand_shape) <span class="sc">+</span> </span>
 <span id="cb1-15"><a href="#cb1-15"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> final_thailand<span class="sc">$</span>X1991<span class="fl">.07</span>)) <span class="sc">+</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="st">"Average Annual Percipitation (mm)"</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb1-17"><a href="#cb1-17"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Latitude"</span>, <span class="at">y =</span> <span class="st">"Longitude"</span>, <span class="at">title =</span> <span class="st">"Precipitation Thailand 1901-2007"</span>, <span class="at">caption =</span> <span class="st">"Data from the World Bank Group"</span>, <span class="at">alt =</span> <span class="st">"Thailand has a large amount of precipitation especially in the center of the country"</span>) <span class="sc">+</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="st">" "</span>, <span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Latitude"</span>, <span class="at">y =</span> <span class="st">"Longitude"</span>, <span class="at">title =</span> <span class="st">"Average Annual Percipitation Thailand 1901-2007 (mm)"</span>, <span class="at">caption =</span> <span class="st">"Data from the World Bank Group"</span>, <span class="at">alt =</span> <span class="st">"Thailand has a large amount of precipitation especially in the center of the country"</span>) <span class="sc">+</span></span>
 <span id="cb1-18"><a href="#cb1-18"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="solo-project_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="solo-project_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>I wanted to explore rainfall in Thailand. Thailand is a tropical country, so it gets a lot of rain, especially during the monsoon season. Additionally, it has many different landscapes, from coastal areas, to the central plains, to the mountains in the north. The geography could affect how much rain different places may get. From the map, it’s clear that the central provinces usually get more rain than the coastal ones. Nakhon Sawan has the most rainfall, with over 3,000 millimeters (3 meters) per year on average, which is very high.</p>
 
 
 <!-- -->
@@ -982,7 +983,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-12"><a href="#cb2-12"></a><span class="co">---</span></span>
 <span id="cb2-13"><a href="#cb2-13"></a></span>
 <span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="in">```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="in">```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE, fig.width=6, fig.height=8}</span></span>
 <span id="cb2-16"><a href="#cb2-16"></a><span class="in">library(tidyverse)</span></span>
 <span id="cb2-17"><a href="#cb2-17"></a><span class="in">library(sf)</span></span>
 <span id="cb2-18"><a href="#cb2-18"></a><span class="in">library(rnaturalearth)</span></span>
@@ -998,12 +999,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-28"><a href="#cb2-28"></a></span>
 <span id="cb2-29"><a href="#cb2-29"></a><span class="in">ggplot(thailand_shape) + </span></span>
 <span id="cb2-30"><a href="#cb2-30"></a><span class="in">  geom_sf(aes(fill = final_thailand$X1991.07)) +</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="in">  scale_fill_viridis_c("Average Annual Percipitation (mm)", direction = -1) + </span></span>
-<span id="cb2-32"><a href="#cb2-32"></a><span class="in">  labs(x = "Latitude", y = "Longitude", title = "Precipitation Thailand 1901-2007", caption = "Data from the World Bank Group", alt = "Thailand has a large amount of precipitation especially in the center of the country") +</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a><span class="in">  scale_fill_viridis_c(" ", direction = -1) + </span></span>
+<span id="cb2-32"><a href="#cb2-32"></a><span class="in">  labs(x = "Latitude", y = "Longitude", title = "Average Annual Percipitation Thailand 1901-2007 (mm)", caption = "Data from the World Bank Group", alt = "Thailand has a large amount of precipitation especially in the center of the country") +</span></span>
 <span id="cb2-33"><a href="#cb2-33"></a><span class="in">  theme_bw()</span></span>
 <span id="cb2-34"><a href="#cb2-34"></a><span class="in">```</span></span>
 <span id="cb2-35"><a href="#cb2-35"></a></span>
-<span id="cb2-36"><a href="#cb2-36"></a></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb2-36"><a href="#cb2-36"></a></span>
+<span id="cb2-37"><a href="#cb2-37"></a>I wanted to explore rainfall in Thailand. Thailand is a tropical country, so it gets a lot of rain, especially during the monsoon season. Additionally, it has many different landscapes, from coastal areas, to the central plains, to the mountains in the north. The geography could affect how much rain different places may get. From the map, it's clear that the central provinces usually get more rain than the coastal ones. Nakhon Sawan has the most rainfall, with over 3,000 millimeters (3 meters) per year on average, which is very high.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
