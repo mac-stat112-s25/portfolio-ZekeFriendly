@@ -12,7 +12,7 @@ format:
 ---
 
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE, fig.width=6, fig.height=8}
 library(tidyverse)
 library(sf)
 library(rnaturalearth)
@@ -28,10 +28,10 @@ final_thailand <- thailand |>
 
 ggplot(thailand_shape) + 
   geom_sf(aes(fill = final_thailand$X1991.07)) +
-  scale_fill_viridis_c("Average Annual Percipitation (mm)", direction = -1) + 
-  labs(x = "Latitude", y = "Longitude", title = "Precipitation Thailand 1901-2007", caption = "Data from the World Bank Group", alt = "Thailand has a large amount of precipitation especially in the center of the country") +
+  scale_fill_viridis_c(" ", direction = -1) + 
+  labs(x = "Latitude", y = "Longitude", title = "Average Annual Percipitation Thailand 1901-2007 (mm)", caption = "Data from the World Bank Group", alt = "Thailand has a large amount of precipitation especially in the center of the country") +
   theme_bw()
 ```
 
 
-
+I wanted to explore rainfall in Thailand. Thailand is a tropical country, so it gets a lot of rain, especially during the monsoon season. Additionally, it has many different landscapes, from coastal areas, to the central plains, to the mountains in the north. The geography could affect how much rain different places may get. From the map, it's clear that the central provinces usually get more rain than the coastal ones. Nakhon Sawan has the most rainfall, with over 3,000 millimeters (3 meters) per year on average, which is very high.
