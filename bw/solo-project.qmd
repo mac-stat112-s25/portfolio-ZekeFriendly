@@ -12,7 +12,7 @@ format:
 ---
 
 
-```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE, fig.width=12, fig.height=16}
+```{r, echo=TRUE, warning=FALSE, message=FALSE, error=FALSE, fig.width=6, fig.height=8}
 library(tidyverse)
 library(sf)
 library(rnaturalearth)
