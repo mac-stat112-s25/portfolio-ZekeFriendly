@@ -51,7 +51,7 @@ book:
       - ica/ica-strings.qmd
       - ica/ica-factors.qmd
       - ica/ica-joining.qmd
-      - ica/ica-dataimport.qm
+      - ica/ica-dataimport.qmd
 
 format:
   html:
